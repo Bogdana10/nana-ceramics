@@ -39,7 +39,7 @@
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   .serif { font-family: "Lora", Georgia, serif; }
-  .wrap { width: min(920px, 100% - 32px); margin-inline: auto; }
+  .wrap { width: min(1320px, 100% - 48px); margin-inline: auto; }
   .dots { background-image: radial-gradient(rgba(60,50,40,.16) 1.1px, transparent 1.2px); background-size: 22px 22px; }
   .eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); margin: 0 0 22px; }
 
@@ -55,10 +55,10 @@
   .cart__btn, .cart__seg button, .ci__qty { border-radius: 99px; }
 
   /* ---------- hero ---------- */
-  .hero { position: relative; min-height: 92vh; display: flex; align-items: center; padding: 120px 0 60px; overflow: hidden; }
-  .hero__hi { font-family: "Lora", serif; font-weight: 600; font-size: 22px; color: #4a4440; margin: 0 0 4px; }
-  .hero__sub { font-size: 14px; color: var(--muted); margin: 0 0 30px; }
-  .hero h1 { font-weight: 700; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.16; letter-spacing: -.02em; margin: 0; max-width: 17ch; }
+  .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 120px 0 60px; overflow: hidden; }
+  .hero__hi { font-family: "Lora", serif; font-weight: 600; font-size: 26px; color: #4a4440; margin: 0 0 4px; }
+  .hero__sub { font-size: 16px; color: var(--muted); margin: 0 0 30px; }
+  .hero h1 { font-weight: 700; font-size: clamp(34px, 5vw, 68px); line-height: 1.12; letter-spacing: -.02em; margin: 0; max-width: 16ch; }
   .hero h1 em { font-family: "Lora", serif; font-style: italic; font-weight: 500; color: var(--clay); }
   .hero__cta { display: flex; gap: 12px; margin-top: 34px; flex-wrap: wrap; }
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 99px; font-weight: 600; font-size: 14px; border: 1px solid var(--ink); transition: transform .2s, background .2s, color .2s; }
@@ -66,8 +66,8 @@
   .btn--dark { background: var(--ink); color: #fff; }
   .btn--ghost:hover { background: var(--ink); color: #fff; }
 
-  .float { position: absolute; width: 132px; background: #fff; padding: 8px 8px 10px; border-radius: 6px; box-shadow: 0 8px 26px rgba(40,30,20,.10); font-size: 10.5px; line-height: 1.35; color: var(--soft); text-align: center; animation: bob 7s ease-in-out infinite; }
-  .float img { aspect-ratio: 1; object-fit: cover; border-radius: 3px; margin-bottom: 7px; }
+  .float { position: absolute; width: clamp(170px, 15vw, 250px); background: #fff; padding: 8px 8px 10px; border-radius: 6px; box-shadow: 0 8px 26px rgba(40,30,20,.10); font-size: 12.5px; line-height: 1.35; color: var(--soft); text-align: center; animation: bob 7s ease-in-out infinite; }
+  .float img { aspect-ratio: 4/5; object-fit: cover; border-radius: 3px; margin-bottom: 7px; }
   .float:nth-of-type(2) { animation-delay: -2s; } .float:nth-of-type(3) { animation-delay: -4.5s; }
   @keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -10px; } }
 
@@ -80,22 +80,22 @@
   /* ---------- collections ---------- */
   .work { padding: 40px 0 40px; }
   .case { margin-bottom: 110px; }
-  .case h2 { font-family: "Lora", serif; font-weight: 700; font-size: clamp(30px, 4.4vw, 46px); line-height: 1.1; margin: 0 0 18px; letter-spacing: -.01em; }
+  .case h2 { font-family: "Lora", serif; font-weight: 700; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.1; margin: 0 0 18px; letter-spacing: -.01em; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
   .tags span { font-size: 12.5px; color: var(--tag); border: 1px solid var(--line); background: #fff; padding: 4px 11px; border-radius: 99px; }
-  .case p { color: #3d3834; max-width: 62ch; margin: 0 0 28px; }
-  .panel { position: relative; border-radius: 22px; border: 1px solid var(--line); overflow: hidden; padding: 44px 0; }
+  .case p { color: #3d3834; font-size: 17px; max-width: 70ch; margin: 0 0 28px; }
+  .panel { position: relative; border-radius: 28px; border: 1px solid var(--line); overflow: hidden; padding: 56px 0; }
   .panel--sage { background: var(--tint-sage); } .panel--cream { background: var(--tint-cream); } .panel--stone { background: var(--tint-stone); }
-  .rail { display: flex; gap: 22px; width: max-content; animation: rail 40s linear infinite; padding-left: 22px; }
+  .rail { display: flex; gap: 28px; width: max-content; animation: rail 40s linear infinite; padding-left: 22px; }
   .panel:hover .rail { animation-play-state: paused; }
   @keyframes rail { to { transform: translateX(-50%); } }
-  .item { width: 230px; background: #fff; border-radius: 16px; padding: 10px; box-shadow: 0 6px 20px rgba(40,30,20,.06); }
-  .item img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 10px; }
-  .item__meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 4px 2px; font-size: 13.5px; }
+  .item { width: clamp(280px, 24vw, 380px); background: #fff; border-radius: 20px; padding: 12px; box-shadow: 0 6px 20px rgba(40,30,20,.06); }
+  .item img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 12px; }
+  .item__meta { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 14px 6px 4px; font-size: 16px; }
   .item__meta b { font-weight: 600; }
   .item__meta span { color: var(--muted); white-space: nowrap; }
   .duo { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px; padding: 0 22px; }
-  .duo img { width: 100%; height: 100%; max-height: 420px; object-fit: cover; border-radius: 14px; }
+  .duo img { width: 100%; height: 100%; max-height: 620px; object-fit: cover; border-radius: 14px; }
   .duo__col { display: grid; gap: 16px; }
   .duo__card { background: #fff; border-radius: 14px; padding: 20px 22px; font-size: 14.5px; color: #3d3834; }
   .duo__card b { display: block; font-family: "Lora", serif; font-size: 20px; color: var(--ink); margin-bottom: 6px; }
@@ -126,7 +126,7 @@
     .stats__row { grid-template-columns: 1fr; gap: 30px; }
     .duo { grid-template-columns: 1fr; }
     .contact { grid-template-columns: 1fr; }
-    .item { width: 190px; }
+    .item { width: 240px; }
   }
   @media (prefers-reduced-motion: reduce) { .rail, .float { animation: none; } .reveal { opacity: 1; transform: none; } }
 </style>
@@ -152,9 +152,9 @@
       <a class="btn btn--ghost" href="#opt">Оптовий прайс</a>
     </div>
   </div>
-  <figure class="float" data-product="wave-sand" style="right:max(3vw, calc(50% - 600px));top:16%;rotate:4deg;margin:0"><img src="../assets/img/vase-wave.jpg" alt="">Ваза «Хвиля» в інтер'єрі</figure>
-  <figure class="float" style="right:max(12vw, calc(50% - 470px));top:42%;rotate:-3deg;margin:0"><img src="../assets/img/workshop.jpg" alt="">Формуємо горщики в цеху</figure>
-  <figure class="float" data-product="xmas-candy" style="right:max(4vw, calc(50% - 580px));top:66%;rotate:2deg;margin:0"><img src="../assets/img/vase-candy.jpg" alt="">Новорічна «Карамель»</figure>
+  <figure class="float" data-product="wave-sand" style="right:max(2vw, calc(50% - 700px));top:13%;rotate:4deg;margin:0"><img src="../assets/img/vase-wave.jpg" alt="">Ваза «Хвиля» в інтер'єрі</figure>
+  <figure class="float" style="right:max(19vw, calc(50% - 420px));top:36%;rotate:-3deg;margin:0"><img src="../assets/img/workshop.jpg" alt="">Формуємо горщики в цеху</figure>
+  <figure class="float" data-product="xmas-candy" style="right:max(4vw, calc(50% - 660px));top:60%;rotate:2deg;margin:0"><img src="../assets/img/vase-candy.jpg" alt="">Новорічна «Карамель»</figure>
 </header>
 
 <section class="stats">
@@ -195,7 +195,7 @@
           <img src="../assets/img/workshop.jpg" alt="Виготовлення горщиків у цеху">
           <div class="duo__col">
             <div class="duo__card"><b>Як працюємо</b>Надсилаєте запит → отримуєте прайс і каталог → погоджуємо партію → відправляємо Новою поштою.</div>
-            <img src="../assets/img/factory.jpg" alt="Новий цех виробництва" style="max-height:220px">
+            <img src="../assets/img/factory.jpg" alt="Новий цех виробництва" style="max-height:340px">
           </div>
         </div>
       </div>
