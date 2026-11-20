@@ -11,8 +11,10 @@
 <link rel="stylesheet" href="../assets/logo.css">
 <link rel="stylesheet" href="../assets/product-modal.css">
 <link rel="stylesheet" href="../assets/cart.css">
+<link rel="stylesheet" href="../assets/catalog.css">
 <style>
   :root {
+    --cat-accent: #1f1c1a; --cat-radius: 18px; --cat-line: #e6e1d9; --cat-head: "Lora", serif; --cat-muted: #6b655f;
     --bg: #F7F5F0;
     --ink: #1f1c1a;
     --muted: #6b655f;
@@ -117,6 +119,8 @@
   .contact__btns { display: grid; gap: 10px; }
   footer { padding: 46px 0 40px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--soft); font-size: 13px; }
 
+  .cat-h { font-family: "Lora", serif; font-weight: 700; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.1; margin: 0 0 30px; letter-spacing: -.01em; }
+  .cat-card__title { font-size: 18px; }
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
@@ -134,7 +138,7 @@
 <body class="dots">
 
 <nav class="pill">
-  <a href="#work">Колекції</a>
+  <a href="#catalog">Каталог</a>
   <a href="#opt" class="hide-sm">Опт</a>
   <a href="#top" class="pill__logo" aria-label="Nana Ceramics, на початок"><svg viewBox="0 0 64 72"><path d="M22 18h22l-4 30h-14z" fill="#B4532A"/><path d="M50 30c3 0 3 4 3 6 6 3 9 9 9 15 0 9-6 17-12 17s-12-8-12-17c0-6 3-12 9-15 0-2 0-6 3-6z" fill="#D2A05C"/></svg></a>
   <a href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener" class="hide-sm">Instagram</a>
@@ -148,12 +152,12 @@
     <p class="hero__sub">Український виробник керамічних горщиків, ваз та сувенірів · опт і роздріб</p>
     <h1>Робимо кераміку, в&nbsp;якій квітам <em>добре.</em> Від гіпсової форми до глазурі — власними руками.</h1>
     <div class="hero__cta">
-      <a class="btn btn--dark" href="#work">Дивитись колекції</a>
+      <a class="btn btn--dark" href="#catalog">Дивитись каталог</a>
       <a class="btn btn--ghost" href="#opt">Оптовий прайс</a>
     </div>
   </div>
-  <figure class="float" data-product="wave-sand" style="right:max(2vw, calc(50% - 700px));top:13%;rotate:4deg;margin:0"><img src="../assets/img/vase-wave.jpg" alt="">Ваза «Хвиля» в інтер'єрі</figure>
-  <figure class="float" style="right:max(19vw, calc(50% - 420px));top:36%;rotate:-3deg;margin:0"><img src="../assets/img/workshop.jpg" alt="">Формуємо горщики в цеху</figure>
+  <figure class="float" data-product="stail" style="right:max(2vw, calc(50% - 700px));top:13%;rotate:4deg;margin:0"><img src="../assets/img/cat/stail/photo1.jpg" alt="">Ваза «Стайл» в інтер'єрі</figure>
+  <figure class="float" data-product="lady" style="right:max(19vw, calc(50% - 420px));top:36%;rotate:-3deg;margin:0"><img src="../assets/img/cat/lady/photo2.jpg" alt="">Ваза «Леді»</figure>
   <figure class="float" data-product="xmas-candy" style="right:max(4vw, calc(50% - 660px));top:60%;rotate:2deg;margin:0"><img src="../assets/img/vase-candy.jpg" alt="">Новорічна «Карамель»</figure>
 </header>
 
@@ -161,9 +165,9 @@
   <div class="wrap">
     <p class="eyebrow">Чим пишаємось</p>
     <div class="stats__row">
-      <div class="stat reveal"><b>100%</b><span>ручна формовка, випал і глазурування на власному виробництві</span></div>
+      <div class="stat reveal"><b>з 1999</b><span>робимо кераміку на власному виробництві — тепер у Кам'янці-Подільському</span></div>
       <div class="stat reveal"><b>4 500+</b><span>людей стежать за нашою керамікою в Instagram</span></div>
-      <div class="stat reveal"><b>0</b><span>посередників — ціни для магазинів напряму від виробника</span></div>
+      <div class="stat reveal"><b>1000+</b><span>позицій у каталозі: понад 40 форм у різних кольорах і покриттях</span></div>
     </div>
   </div>
 </section>
@@ -174,9 +178,16 @@
 
     <article class="case reveal">
       <h2>Вази для дому</h2>
-      <div class="tags"><span>Ручна робота</span><span>Матова глазур</span><span>Хвиля · Муза</span><span>від 450 грн</span></div>
-      <p>Скульптурні форми, які тримають і пишний букет, і одну суху гілку. Найпопулярніші — пісочна «Хвиля» та вази-бюсти «Муза» в білому й чорному кольорі.</p>
-      <div class="panel panel--sage"><div class="rail" data-rail='["wave-sand","muse","wave-bronze"]'></div></div>
+      <div class="tags"><span>27 форм</span><span>Глянець · муар · шовк</span><span>Леді · Стайл · Полі · Самбука</span><span>до 15 кольорів</span></div>
+      <p>Скульптурні вази-обличчя, рельєфні «Серце» й «Лимони», високі «Полі» та «Самбука» до 42 см. Кожна форма — у кількох покриттях і кольорах.</p>
+      <div class="panel panel--sage"><div class="rail" data-rail='["lady","stail","poli","madam","sova","sertse","kim","sambuka","siera","lymony"]'></div></div>
+    </article>
+
+    <article class="case reveal">
+      <h2>Горщики для квітів</h2>
+      <div class="tags"><span>13 форм</span><span>Від 0,3 до 14 л</span><span>Глорія · Дюна · Шар · Кай</span><span>до 28 кольорів</span></div>
+      <p>Від маленької «Фіалки» до напольної «Комети» на 8 л. «Глорія» — у шести розмірах і майже трьох десятках кольорів, з піддонами.</p>
+      <div class="panel panel--stone"><div class="rail" data-rail='["pot-gloria","pot-kai","pot-duna","pot-shar","pot-kvadrat","pot-afrykanka","pot-gran","pot-kometa"]'></div></div>
     </article>
 
     <article class="case reveal">
@@ -187,14 +198,14 @@
     </article>
 
     <article class="case reveal" id="opt">
-      <h2>Горщики та опт</h2>
+      <h2>Співпраця оптом</h2>
       <div class="tags"><span>Власне виробництво</span><span>Квіткові магазини</span><span>Шоуруми</span><span>Брендування</span></div>
       <p>Виробляємо горщики для квітів і вази партіями для магазинів, декораторів та флористів. Стабільна якість, чесна ціна від виробника й відправка по всій Україні.</p>
-      <div class="panel panel--stone">
+      <div class="panel panel--cream">
         <div class="duo">
           <img src="../assets/img/workshop.jpg" alt="Виготовлення горщиків у цеху">
           <div class="duo__col">
-            <div class="duo__card"><b>Як працюємо</b>Надсилаєте запит → отримуєте прайс і каталог → погоджуємо партію → відправляємо Новою поштою.</div>
+            <div class="duo__card"><b>Як працюємо</b>Надсилаєте запит → отримуєте прайс і каталог → погоджуємо партію → відправляємо Новою поштою. Продаємо в Україні та країнах ЄС.</div>
             <img src="../assets/img/factory.jpg" alt="Новий цех виробництва" style="max-height:340px">
           </div>
         </div>
@@ -203,13 +214,21 @@
   </div>
 </section>
 
+<section class="work" id="catalog" style="background:var(--bg);padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Весь каталог 2026</p>
+    <h2 class="cat-h">Понад 40 форм і 1000 позицій</h2>
+    <div data-catalog></div>
+  </div>
+</section>
+
 <section class="story" id="story" style="background:var(--bg)">
   <div class="wrap">
     <p class="eyebrow">Наша історія</p>
     <div class="timeline">
-      <div class="tl reveal"><b>Слов'янськ</b><span>Тут ми почали: перші форми, перша піч і перші вази, які розлетілися по Україні.</span></div>
-      <div class="tl reveal"><b>Релокація</b><span>Через війну перевезли виробництво — обладнання, форми й команду — і не зупинилися.</span></div>
-      <div class="tl reveal"><b>Новий цех</b><span>Сьогодні працюємо на новому місці: більше простору, нові колекції, ті самі руки.</span></div>
+      <div class="tl reveal"><b>1999 · Слов'янськ</b><span>Тут ми почали: перші форми, перша піч і перші вази, які розлетілися по Україні.</span></div>
+      <div class="tl reveal"><b>2025 · Релокація</b><span>Через війну перевезли виробництво до Кам'янця-Подільського — обладнання, форми й команду.</span></div>
+      <div class="tl reveal"><b>Новий цех · 1000 м²</b><span>З нуля облаштували приміщення й відновили повноцінну роботу. Сьогодні — понад 40 форм і 1000 позицій, продаж в Україні та ЄС.</span></div>
     </div>
   </div>
 </section>
@@ -220,7 +239,7 @@
       <div><h2>Потрібна одна ваза чи сто горщиків?</h2><p>Напишіть нам — підберемо, порахуємо й надішлемо оптовий прайс.</p></div>
       <div class="contact__btns">
         <a class="btn btn--light" href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">Написати в Instagram</a>
-        <a class="btn" href="#">Telegram / Viber</a>
+        <a class="btn" href="https://t.me/+380667919580" target="_blank" rel="noopener">Telegram · +38 (066) 791-95-80</a>
       </div>
     </div>
     <footer><span class="nana-logo" style="font-size:12px"></span><span>© 2026 Nana Ceramics · Варіант 3 · editorial</span></footer>
@@ -232,8 +251,8 @@
 <script>
   document.querySelectorAll('[data-rail]').forEach((rail) => {
     const items = JSON.parse(rail.dataset.rail);
-    const html = items.map((id) => { const x = NANA.products[id]; const from = x.options?.values.some(v => v.price && v.price !== x.price) ? 'від ' : '';
-      return `<div class="item" data-product="${id}" tabindex="0" aria-label="${x.title} — відкрити"><img src="../assets/img/${x.img}" alt="${x.title}" loading="lazy"><div class="item__meta"><b>${x.title.replace(/^(Новорічна ваза|Ваза-бюст|Ваза) /, '')}</b><span>${from}${x.price} грн</span></div></div>`; }).join('');
+    const html = items.map((id) => { const x = NANA.products[id]; 
+      return `<div class="item" data-product="${id}" tabindex="0" aria-label="${x.title} — відкрити"><img src="../assets/img/${x.img}" alt="${x.title}" loading="lazy"><div class="item__meta"><b>${x.title.replace(/^(Новорічна ваза|Ваза-бюст|Ваза|Горщик) /, '')}</b><span>${NANA.priceLabel(x)}</span></div></div>`; }).join('');
     // repeat so the loop is seamless even with few items
     const reps = Math.max(2, Math.ceil(8 / items.length));
     rail.innerHTML = html.repeat(reps * 2);
@@ -242,6 +261,7 @@
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>
+<script src="../assets/catalog.js"></script>
 <script src="../assets/cart.js"></script>
 <script src="../assets/product-modal.js"></script>
 </body>

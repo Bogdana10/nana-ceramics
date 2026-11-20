@@ -11,8 +11,10 @@
 <link rel="stylesheet" href="../assets/logo.css">
 <link rel="stylesheet" href="../assets/product-modal.css">
 <link rel="stylesheet" href="../assets/cart.css">
+<link rel="stylesheet" href="../assets/catalog.css">
 <style>
   :root {
+    --cat-accent: #6B3A26; --cat-radius: 4px; --cat-head: "Caveat", cursive;
     --clay: #A97A6C;      /* dusty terracotta-rose, like unglazed clay */
     --clay-deep: #8E5D50;
     --cream: #F4EBDD;
@@ -41,6 +43,8 @@
   }
   img { display: block; max-width: 100%; }
   a { color: inherit; }
+  .cat-card__title { font-size: 25px; font-weight: 700; }
+  .cat-card__img { box-shadow: 0 6px 18px rgba(60,40,20,.10); }
   .script { font-family: "Great Vibes", cursive; font-weight: 400; }
   .serif { font-family: "Cormorant Garamond", serif; }
   .hand { font-family: "Caveat", cursive; }
@@ -171,9 +175,9 @@
   <svg class="piece doodle hide-sm" style="left:16%;top:5%;width:70px;transform:rotate(-10deg)" viewBox="0 0 60 90" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M30 40c-8-10-18-14-22-8 6 2 12 6 22 8zM30 40c8-12 18-16 22-10-6 2-13 6-22 10zM30 40V8M30 22c-5-4-11-5-12-2M30 16c5-4 10-4 11-1"/><path d="M14 46h32l-4 36H18z"/><path d="M12 46h36"/></svg>
 
   <!-- right collage -->
-  <figure class="piece polaroid" data-product="wave-sand" tabindex="0" style="right:7%;top:12%;width:190px;transform:rotate(6deg);margin:0"><span class="tape"></span><img src="../assets/img/vase-wave.jpg" alt="Ваза «Хвиля»"><figcaption>«Хвиля» ♡</figcaption></figure>
+  <figure class="piece polaroid" data-product="stail" tabindex="0" style="right:7%;top:12%;width:190px;transform:rotate(6deg);margin:0"><span class="tape"></span><img src="../assets/img/cat/stail/photo1.jpg" alt="Ваза «Стайл»"><figcaption>«Стайл» ♡</figcaption></figure>
   <svg class="piece stamp hide-sm" style="right:24%;top:46%" viewBox="0 0 132 132"><defs><path id="c" d="M66 66m-50 0a50 50 0 1 1 100 0a50 50 0 1 1-100 0"/></defs><g class="spin"><text><textPath href="#c">ручна робота ✦ зроблено в Україні ✦</textPath></text></g><circle cx="66" cy="66" r="30" fill="#E3A2AE"/><path d="M58 52h16l-2 22H60z" fill="#6B3A26"/><circle cx="73" cy="72" r="7" fill="#D2A05C"/></svg>
-  <figure class="piece polaroid hide-sm" data-product="muse" tabindex="0" style="right:4%;top:58%;width:150px;transform:rotate(-4deg);margin:0"><img src="../assets/img/vase-busts.jpg" alt="Вази-бюсти"><figcaption>муза</figcaption></figure>
+  <figure class="piece polaroid hide-sm" data-product="lady" tabindex="0" style="right:4%;top:58%;width:150px;transform:rotate(-4deg);margin:0"><img src="../assets/img/cat/lady/photo2.jpg" alt="Ваза «Леді»"><figcaption>леді</figcaption></figure>
   <svg class="piece doodle hide-sm" style="left:24%;bottom:10%;width:84px;transform:rotate(14deg)" viewBox="0 0 90 70" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="45" cy="16" rx="30" ry="8"/><path d="M15 16c0 22 10 44 30 44s30-22 30-44"/><path d="M28 34c6 4 28 4 34 0"/></svg>
 
   <div style="position:relative;z-index:1">
@@ -198,7 +202,7 @@
         <p>Кожна річ проходить шлях від гіпсової форми до печі й глазурі через наші руки. Тому кожна трохи інша — і саме це ми любимо.</p>
         <p>Робимо вази, в яких квітам добре, і горщики, які не соромно поставити на найкраще місце в домі.</p>
       </div>
-      <div class="links"><a href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">Instagram</a> | <a href="#contact">Опт</a> | <a href="#contact">Telegram</a></div>
+      <div class="links"><a href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">Instagram</a> | <a href="#contact">Опт</a> | <a href="https://t.me/+380667919580" target="_blank" rel="noopener">Telegram</a></div>
     </div>
     <figure class="polaroid about__photo" style="position:relative;margin:70px 0 0"><span class="tape"></span><img src="../assets/img/vase-xmas-shelf.jpg" alt="Вази на полиці виробництва"><figcaption>свіженькі, з печі</figcaption></figure>
   </div>
@@ -207,9 +211,9 @@
 <section class="wrap story" id="story">
   <h2 class="h-swash" style="font-size:clamp(44px,6vw,76px)"><span class="script">Н</span><span class="serif">аша історія</span></h2>
   <div class="story__grid">
-    <div class="win"><div class="win__bar"><span>01</span><span>×</span></div><div class="win__body"><b>Слов'янськ</b>Тут народилася Nana Ceramics: перші форми, перші печі, перші вази, які розлетілися по всій країні.</div></div>
-    <div class="win"><div class="win__bar"><span>02</span><span>×</span></div><div class="win__body"><b>Релокація</b>Через війну ми перевезли виробництво: обладнання, форми і команду. Не зупинились ні на сезон.</div></div>
-    <div class="win"><div class="win__bar"><span>03</span><span>×</span></div><div class="win__body"><b>Новий цех</b>Сьогодні працюємо на новому місці — більше простору, більше колекцій, ті самі руки.</div></div>
+    <div class="win"><div class="win__bar"><span>01</span><span>×</span></div><div class="win__body"><b>1999 · Слов'янськ</b>Тут народилася Nana Ceramics: перші форми, перші печі, перші вази, які розлетілися по всій країні.</div></div>
+    <div class="win"><div class="win__bar"><span>02</span><span>×</span></div><div class="win__body"><b>2025 · Релокація</b>Через війну перевезли виробництво до Кам'янця-Подільського: обладнання, форми і команду.</div></div>
+    <div class="win"><div class="win__bar"><span>03</span><span>×</span></div><div class="win__body"><b>Новий цех · 1000 м²</b>Облаштували з нуля. Сьогодні — понад 40 форм і 1000 позицій, продаємо в Україні та ЄС.</div></div>
   </div>
 </section>
 
@@ -219,6 +223,8 @@
     <p>маленькі речі, зроблені руками</p>
   </div>
   <div class="board" id="board"></div>
+  <div class="collection__head" style="margin-top:80px"><h2 class="h-swash" style="font-size:clamp(40px,5vw,64px)"><span class="script">В</span><span class="serif">есь каталог</span></h2><p>понад 40 форм і 1000 позицій</p></div>
+  <div data-catalog></div>
 </section>
 
 <section class="contact" id="contact">
@@ -226,8 +232,8 @@
   <p>Хочете одну вазу собі, подарунок або партію горщиків для магазину — напишіть, підберемо та порахуємо.</p>
   <div class="btns">
     <a class="btn btn--solid" href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">Написати в Instagram ↗</a>
-    <a class="btn" href="#">Telegram</a>
-    <a class="btn" href="#">Оптовий прайс</a>
+    <a class="btn" href="https://t.me/+380667919580" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn" href="tel:+380667919580">+38 (066) 791-95-80</a>
   </div>
 </section>
 
@@ -245,19 +251,19 @@
   // collection board (prices are placeholders where unknown)
   const P = NANA.products;
   const items = [
-    { id: 'wave-sand', cap: 'Хвиля, пісок', pos: 'left:2%;top:0', r: -5 },
-    { id: 'muse', cap: 'Муза', pos: 'left:36%;top:60px', r: 4 },
-    { id: 'wave-bronze', cap: 'Хвиля, бронза', pos: 'right:3%;top:10px', r: -3 },
+    { id: 'lady', cap: 'Леді', pos: 'left:2%;top:0', r: -5 },
+    { id: 'pot-gloria', cap: 'Глорія, 6 розмірів', pos: 'left:36%;top:60px', r: 4 },
+    { id: 'sertse', cap: 'Серце', pos: 'right:3%;top:10px', r: -3 },
     { id: 'xmas-candy', cap: 'Карамель', pos: 'left:8%;top:430px', r: 6 },
-    { id: 'xmas-tree', cap: 'Ялинка', pos: 'right:8%;top:440px', r: -7 },
-    { id: 'xmas-snowman', cap: 'Сніговики', pos: 'left:24%;top:760px', r: -2 },
-    { id: 'pot-handmade', cap: 'горщики з цеху', pos: 'right:20%;top:780px', r: 5 },
+    { id: 'pot-kai', cap: 'Кай', pos: 'right:8%;top:440px', r: -7 },
+    { id: 'lymony', cap: 'Лимони', pos: 'left:24%;top:760px', r: -2 },
+    { id: 'pot-bonsai', cap: 'бонсайниця', pos: 'right:20%;top:780px', r: 5 },
   ];
   const board = document.getElementById('board');
   board.innerHTML = items.map(x => `
     <figure class="piece polaroid" data-product="${x.id}" tabindex="0" aria-label="${P[x.id].title} — відкрити" style="${x.pos};--r:${x.r}deg;transform:rotate(${x.r}deg);margin:0">
       <span class="tape"></span><img src="../assets/img/${P[x.id].img}" alt="${P[x.id].title}" loading="lazy">
-      <figcaption>${x.cap}</figcaption><span class="price">${P[x.id].price} ₴</span>
+      <figcaption>${x.cap}</figcaption><span class="price">${P[x.id].price == null ? 'за запитом' : P[x.id].price + ' ₴'}</span>
     </figure>`).join('') + `
     <div class="win" style="left:50%;top:470px;transform:translateX(-50%) rotate(-1deg)">
       <div class="win__bar"><span>опт.txt</span><span>×</span></div>
@@ -282,6 +288,7 @@
     });
   }
 </script>
+<script src="../assets/catalog.js"></script>
 <script src="../assets/cart.js"></script>
 <script src="../assets/product-modal.js"></script>
 </body>

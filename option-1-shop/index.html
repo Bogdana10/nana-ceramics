@@ -11,8 +11,10 @@
 <link rel="stylesheet" href="../assets/logo.css">
 <link rel="stylesheet" href="../assets/product-modal.css">
 <link rel="stylesheet" href="../assets/cart.css">
+<link rel="stylesheet" href="../assets/catalog.css">
 <style>
   :root {
+    --cat-accent: #9C4A26; --cat-radius: 14px; --cat-line: #e7e2dc; --cat-muted: #6f6861;
     --clay: #9C4A26;        /* terracotta from the logo */
     --clay-dark: #7A3519;
     --sand: #D2A05C;
@@ -164,7 +166,7 @@
   </a>
   <a href="#" class="nana-logo"></a>
   <div class="topbar__contact">
-    <a class="topbar__phone" href="tel:+380000000000">+38 0XX XXX XX XX</a>
+    <a class="topbar__phone" href="tel:+380667919580">+38 (066) 791-95-80</a>
     <span class="topbar__hours">Пн–Сб<br>з 9:00 до 18:00</span>
     <button class="lang">UA ▾</button>
   </div>
@@ -173,13 +175,12 @@
 <nav class="nav">
   <div class="wrap">
     <div class="nav__links">
-      <a href="#new">Вази</a>
-      <a href="#new">Горщики для квітів</a>
+      <a href="#new" data-catalog-go="vase">Вази</a>
+      <a href="#new" data-catalog-go="pot">Горщики для квітів</a>
       <a href="#xmas">Новорічна колекція</a>
-      <a href="#new">Сувеніри</a>
+      <a href="#new" data-catalog-go="gift">Сувеніри</a>
       <a href="#opt">Опт</a>
       <a href="#about">Виробництво</a>
-      <a href="#new" class="sale">SALE</a>
       <a href="#footer">Доставка та оплата</a>
     </div>
     <div class="nav__icons">
@@ -194,10 +195,10 @@
   <section class="wrap cats">
     <button class="cats__arrow cats__arrow--prev" aria-label="Назад" data-dir="-1">‹</button>
     <div class="cats__track" id="catsTrack">
-      <a class="cat" href="#new"><div class="cat__label cat__label--top"><b>Вази</b><span>форми, в яких квітам добре</span></div><img src="../assets/img/vase-wave.jpg" alt="Пісочна ваза «Хвиля» з гілками"></a>
-      <a class="cat" href="#new"><img src="../assets/img/vase-busts.jpg" alt="Вази-бюсти білого та чорного кольору"><div class="cat__label cat__label--bottom"><b>Декор</b><span>скульптурні вази та сувеніри для дому</span></div></a>
+      <a class="cat" href="#new" data-catalog-go="vase"><div class="cat__label cat__label--top"><b>Вази</b><span>27 форм, глянець, муар і шовк</span></div><img src="../assets/img/cat/stail/photo1.jpg" alt="Ваза «Стайл» в інтер'єрі"></a>
+      <a class="cat" href="#new" data-catalog-go="gift"><img src="../assets/img/cat/lady/photo2.jpg" alt="Ваза «Леді» на полиці"><div class="cat__label cat__label--bottom"><b>Декор і сувеніри</b><span>скульптурні вази, статуетки, скарбнички</span></div></a>
       <a class="cat" href="#xmas"><div class="cat__label cat__label--top"><b>Новорічна колекція</b><span>святкові вази ручного розпису</span></div><img src="../assets/img/vase-candy.jpg" alt="Біла новорічна ваза з карамельними тростинками"></a>
-      <a class="cat" href="#about"><img src="../assets/img/workshop.jpg" alt="Майстриня формує горщик на виробництві"><div class="cat__label cat__label--bottom"><b>Горщики для квітів</b><span>власне виробництво, опт та роздріб</span></div></a>
+      <a class="cat" href="#new" data-catalog-go="pot"><img src="../assets/img/cat/pot-gloria/photo1.jpg" alt="Горщики «Глорія»"><div class="cat__label cat__label--bottom"><b>Горщики для квітів</b><span>13 форм, від 0,3 до 14 л</span></div></a>
       <a class="cat" href="#opt"><div class="cat__label cat__label--top"><b>Опт</b><span>для квіткових магазинів і шоурумів</span></div><img src="../assets/img/vase-xmas-shelf.jpg" alt="Полиця з керамічними вазами на складі"></a>
     </div>
     <button class="cats__arrow cats__arrow--next" aria-label="Далі" data-dir="1">›</button>
@@ -212,8 +213,8 @@
 
   <section class="section section--soft" id="new">
     <div class="wrap">
-      <div class="section__head"><h2 class="h2">Новинки</h2><a class="link-more" href="#">Дивитись усі</a></div>
-      <div class="grid" id="newGrid"></div>
+      <div class="section__head"><h2 class="h2">Каталог 2026</h2><a class="link-more" href="#opt">Оптовий прайс</a></div>
+      <div data-catalog></div>
     </div>
   </section>
 
@@ -248,7 +249,7 @@
       <div>
         <h3>Привіт, ми — Nana Ceramics</h3>
         <p>Ми український виробник керамічних горщиків, ваз та сувенірів. Від гіпсової форми до глазурі — усе робимо руками на власному виробництві.</p>
-        <p>Через війну нам довелося перевезти виробництво зі Слов'янська. Ми зібрали обладнання, команду та форми — і запустили цех заново, щоб і далі робити речі, які приносять затишок у дім.</p>
+        <p>Працюємо з 1999 року. У 2025 році через війну перевезли виробництво зі Слов'янська до Кам'янця-Подільського: з нуля облаштували цех площею 1000 м², встановили обладнання й запустили роботу заново, щоб і далі робити речі, які приносять затишок у дім.</p>
         <p>Працюємо з людьми, які купують одну вазу для себе, і з магазинами, яким потрібні сотні горщиків на сезон.</p>
         <p><b>Дякуємо, що ви тут!</b></p>
       </div>
@@ -263,10 +264,10 @@
       <div><h4>Каталог</h4><ul><li>Вази</li><li>Горщики для квітів</li><li>Новорічна колекція</li><li>Сувеніри</li><li>SALE</li></ul></div>
       <div><h4>Клієнтам</h4><ul><li>Доставка та оплата</li><li>Обмін та повернення</li><li>Оптова співпраця</li><li>Договір оферти</li></ul></div>
       <div><h4>Контакти</h4>
-        <div class="footer__contacts"><span>Пн–Сб з 9:00 до 18:00</span><span>+38 0XX XXX XX XX</span><span>hello@nanaceramics.com</span><span>Україна</span></div>
+        <div class="footer__contacts"><span>Пн–Сб з 9:00 до 18:00</span><span>+38 (066) 791-95-80</span><span>nanaceramics1@gmail.com</span><span>м. Кам'янець-Подільський</span></div>
         <div class="footer__social">
           <a href="https://www.instagram.com/nanaceramics1/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
-          <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 4 2.5 11.2c-.9.4-.9 1.5 0 1.8l4.6 1.5 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.4 4.7 3.5c.6.4 1.4.1 1.6-.6L22.4 5.3c.2-.9-.6-1.6-1.4-1.3zM9.8 14.4l-.4 3.6-1.4-4.4 9.8-6.2z"/></svg></a>
+          <a href="https://t.me/+380667919580" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 4 2.5 11.2c-.9.4-.9 1.5 0 1.8l4.6 1.5 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.4 4.7 3.5c.6.4 1.4.1 1.6-.6L22.4 5.3c.2-.9-.6-1.6-1.4-1.3zM9.8 14.4l-.4 3.6-1.4-4.4 9.8-6.2z"/></svg></a>
           <a href="#" aria-label="Viber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c5 0 8.5 2.5 8.5 8s-3.5 8-8.5 8l-3 2v-2.5C5 17 3.5 14.5 3.5 11 3.5 5.5 7 3 12 3z"/></svg></a>
         </div>
       </div>
@@ -282,7 +283,6 @@
   const IMG = '../assets/img/';
   const P = NANA.products;
   const grids = {
-    newGrid: [['wave-sand', 'sale'], ['muse', 'sale'], ['wave-bronze', 'new'], ['pot-handmade', 'new']],
     xmasGrid: [['xmas-candy', 'new'], ['xmas-tree', 'new'], ['xmas-snowman'], ['xmas-candle']],
   };
   const heart = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
@@ -295,7 +295,7 @@
           <span class="card__more">Детальніше · ${(x.gallery || []).length} фото</span>
         </div>
         <h3 class="card__title">${x.title}</h3>
-        <div class="card__price">${x.options?.values[0].price && x.options.values.some(v => v.price !== x.price) ? 'від ' : ''}${x.price} грн${x.oldPrice ? `<s>${x.oldPrice} грн</s>` : ''}</div>
+        <div class="card__price">${NANA.priceLabel(x)}${x.oldPrice ? `<s>${x.oldPrice} грн</s>` : ''}</div>
         <div class="card__row"><button class="fav" aria-label="В обране">${heart}</button><button class="add" data-id="${id}">Додати в кошик</button></div>
       </article>`; }).join('');
   }
@@ -313,6 +313,7 @@
     if (arrow) { const tr = document.getElementById('catsTrack'); tr.scrollBy({ left: tr.clientWidth / 2 * arrow.dataset.dir, behavior: 'smooth' }); }
   });
 </script>
+<script src="../assets/catalog.js"></script>
 <script src="../assets/cart.js"></script>
 <script src="../assets/product-modal.js"></script>
 </body>

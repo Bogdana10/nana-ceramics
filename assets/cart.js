@@ -22,9 +22,12 @@
 
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(lines)); } catch {} };
   const unitPrice = (l) => products[l.id].options?.values[l.opt]?.price ?? products[l.id].price;
-  const optName = (l) => products[l.id].options?.values[l.opt]?.name;
+  const optName = (l) => [products[l.id].options?.values[l.opt]?.name, products[l.id].sizes?.values[l.size || 0]?.name].filter(Boolean).join(', ');
+  const hasAsk = () => lines.some((l) => unitPrice(l) == null);
+  const money = (n) => (n == null ? 'ціна за запитом' : fmt(n));
+  const totalLabel = () => (hasAsk() ? (total() ? fmt(total()) + ' + запит' : 'за запитом') : fmt(total()));
   const count = () => lines.reduce((s, l) => s + l.qty, 0);
-  const total = () => lines.reduce((s, l) => s + unitPrice(l) * l.qty, 0);
+  const total = () => lines.reduce((s, l) => s + (unitPrice(l) ?? 0) * l.qty, 0);
 
   // ---------- DOM ----------
   const root = document.createElement('div');
@@ -89,11 +92,11 @@
           <div><p style="margin:0 0 8px;font-size:13px;font-weight:600">Доставка</p><div class="cart__seg">${btn('Відділення Нової пошти')}${btn('Поштомат')}${btn("Кур'єр")}</div></div>
           <label>${delivery === "Кур'єр" ? 'Місто та адреса' : 'Місто та номер відділення'}<input name="city" value="${esc(form.city)}" placeholder="${delivery === "Кур'єр" ? 'Київ, вул. Саксаганського 12' : 'Київ, №25'}"></label>
           <label>Коментар <span style="font-weight:400;opacity:.6">(необов'язково)</span><textarea name="comment" placeholder="Подарункова упаковка, побажання щодо кольору…">${esc(form.comment)}</textarea></label>
-          <div class="cart__review"><b>${n} шт.</b> на суму <b>${fmt(total())}</b> · ${total() >= FREE_SHIPPING ? 'доставка безкоштовна' : 'доставка за тарифами перевізника'}</div>
+          <div class="cart__review"><b>${n} шт.</b> · ${hasAsk() ? 'ціни для товарів «за запитом» менеджер надішле в чаті' : `на суму <b>${fmt(total())}</b> · ${total() >= FREE_SHIPPING ? 'доставка безкоштовна' : 'доставка за тарифами перевізника'}`}</div>
         </form></div>
         <div class="cart__foot">
-          <div class="cart__total"><span>До сплати</span><b>${fmt(total())}</b></div>
-          <a class="cart__btn" href="https://t.me/${telegram}" target="_blank" rel="noopener" data-c="send">${tgIcon}Надіслати замовлення в Telegram</a>
+          <div class="cart__total"><span>${hasAsk() ? 'Сума' : 'До сплати'}</span><b>${totalLabel()}</b></div>
+          <a class="cart__btn" href="https://t.me/${telegram}" target="_blank" rel="noopener" data-c="send">${tgIcon}${hasAsk() ? 'Надіслати запит у Telegram' : 'Надіслати замовлення в Telegram'}</a>
           <button class="cart__btn cart__btn--ghost" data-c="back">← Назад до кошика</button>
           <p class="cart__note">Оплата після підтвердження замовлення менеджером</p>
         </div>`;
@@ -105,40 +108,41 @@
         ${lines.map((l, i) => { const p = products[l.id]; return `
           <div class="ci">
             <div class="ci__img" data-c="view" data-id="${l.id}"><img src="${base + p.img}" alt="${p.title}"></div>
-            <div><p class="ci__name" data-c="view" data-id="${l.id}">${p.title}</p>${optName(l) ? `<div class="ci__opt">${optName(l)}</div>` : ''}<div class="ci__opt">${fmt(unitPrice(l))} / шт.</div>
+            <div><p class="ci__name" data-c="view" data-id="${l.id}">${p.title}</p>${optName(l) ? `<div class="ci__opt">${optName(l)}</div>` : ''}<div class="ci__opt">${unitPrice(l) == null ? 'ціна за запитом' : fmt(unitPrice(l)) + ' / шт.'}</div>
               <div class="ci__qty"><button data-c="qty" data-i="${i}" data-d="-1" aria-label="Менше">−</button><span>${l.qty}</span><button data-c="qty" data-i="${i}" data-d="1" aria-label="Більше">+</button></div></div>
-            <div class="ci__right"><span class="ci__sum">${fmt(unitPrice(l) * l.qty)}</span><button class="ci__rm" data-c="rm" data-i="${i}">Видалити</button></div>
+            <div class="ci__right"><span class="ci__sum">${unitPrice(l) == null ? '—' : fmt(unitPrice(l) * l.qty)}</span><button class="ci__rm" data-c="rm" data-i="${i}">Видалити</button></div>
           </div>`; }).join('')}
-        <div class="cart__progress">${left > 0 ? `Додайте ще на <b>${fmt(left)}</b> — і доставка буде безкоштовною` : '🎉 Доставка для вас безкоштовна'}<div class="cart__bar"><i style="width:${Math.min(100, total() / FREE_SHIPPING * 100)}%"></i></div></div>
+        ${hasAsk() ? '<div class="cart__progress">Ціни на вироби з каталогу уточнюємо індивідуально — для роздрібу та опту. Надішліть запит, і менеджер відповість у Telegram.</div>' : `<div class="cart__progress">${left > 0 ? `Додайте ще на <b>${fmt(left)}</b> — і доставка буде безкоштовною` : '🎉 Доставка для вас безкоштовна'}<div class="cart__bar"><i style="width:${Math.min(100, total() / FREE_SHIPPING * 100)}%"></i></div></div>`}
         ${upsell()}
       </div>
       <div class="cart__foot">
-        <div class="cart__total"><span>Разом</span><b>${fmt(total())}</b></div>
-        <button class="cart__btn" data-c="checkout">Оформити замовлення</button>
+        <div class="cart__total"><span>Разом</span><b>${totalLabel()}</b></div>
+        <button class="cart__btn" data-c="checkout">${hasAsk() ? 'Оформити запит' : 'Оформити замовлення'}</button>
         <p class="cart__note">Відправляємо щодня · надійно пакуємо кераміку</p>
       </div>`;
   }
 
+  const upOrder = Object.keys(products).sort(() => Math.random() - .5);
   function upsell() {
     const inCart = new Set(lines.map((l) => l.id));
-    const ids = Object.keys(products).filter((id) => !inCart.has(id)).slice(0, 2);
+    const ids = upOrder.filter((id) => !inCart.has(id)).slice(0, 2);
     if (!ids.length) return '';
     return `<div class="cart__upsell"><h4>${lines.length ? 'Додайте до замовлення' : 'Вам може сподобатись'}</h4><div class="cart__ups">${ids.map((id) => { const p = products[id]; return `
-      <div class="up"><img src="${base + p.img}" alt=""><div><b>${p.title.replace(/^(Новорічна ваза|Ваза-бюст|Ваза) /, '')}</b>${fmt(p.price)}</div><button data-c="add" data-id="${id}" aria-label="Додати ${p.title}">+</button></div>`; }).join('')}</div></div>`;
+      <div class="up"><img src="${base + p.img}" alt=""><div><b>${p.title.replace(/^(Новорічна ваза|Ваза-бюст|Ваза|Горщик) /, '')}</b>${money(p.price)}</div><button data-c="add" data-id="${id}" aria-label="Додати ${p.title}">+</button></div>`; }).join('')}</div></div>`;
   }
 
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
   function orderText() {
-    const items = lines.map((l) => `• ${products[l.id].title}${optName(l) ? ` (${optName(l)})` : ''} × ${l.qty} = ${fmt(unitPrice(l) * l.qty)}`).join('\n');
-    return `Вітаю! Нове замовлення з сайту:\n${items}\n\nРазом: ${fmt(total())}\n\nІм'я: ${form.name}\nТелефон: ${form.phone}\nДоставка: ${delivery}, ${form.city}${form.comment ? `\nКоментар: ${form.comment}` : ''}`;
+    const items = lines.map((l) => `• ${products[l.id].title}${optName(l) ? ` (${optName(l)})` : ''} × ${l.qty}${unitPrice(l) == null ? ' (ціна за запитом)' : ` = ${fmt(unitPrice(l) * l.qty)}`}`).join('\n');
+    return `Вітаю! ${hasAsk() ? 'Запит' : 'Нове замовлення'} з сайту:\n${items}\n\nРазом: ${totalLabel()}\n\nІм'я: ${form.name}\nТелефон: ${form.phone}\nДоставка: ${delivery}, ${form.city}${form.comment ? `\nКоментар: ${form.comment}` : ''}`;
   }
 
   // ---------- API ----------
-  function add(id, opt = 0, qty = 1, { silent = false } = {}) {
+  function add(id, opt = 0, qty = 1, { silent = false, size = 0 } = {}) {
     if (!products[id]) return;
-    const l = lines.find((x) => x.id === id && x.opt === opt);
-    l ? (l.qty = Math.min(99, l.qty + qty)) : lines.push({ id, opt, qty });
+    const l = lines.find((x) => x.id === id && x.opt === opt && (x.size || 0) === size);
+    l ? (l.qty = Math.min(99, l.qty + qty)) : lines.push({ id, opt, size, qty });
     save(); syncBadges(true);
     if (step === 'done') step = 'cart';
     if (root.classList.contains('is-open')) render();

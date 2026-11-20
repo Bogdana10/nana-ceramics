@@ -10,8 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/product-modal.css">
 <link rel="stylesheet" href="../assets/cart.css">
+<link rel="stylesheet" href="../assets/catalog.css">
 <style>
   :root {
+    --cat-accent: #23251F; --cat-radius: 14px; --cat-head: "DM Sans", sans-serif;
     --bg: #F1EEE8; --ink: #23251F; --muted: #77756E; --line: #DCD8CF; --orange: #E0522F; --night: #151314; --green: #3E8E5B;
     --sans: "DM Sans", system-ui, sans-serif; --serif: "Instrument Serif", Georgia, serif; --hand: "Caveat", cursive;
     --pm-bg: #F6F3EE; --pm-ink: var(--ink); --pm-muted: var(--muted); --pm-line: var(--line); --pm-accent: var(--orange); --pm-accent-ink: #fff;
@@ -314,6 +316,13 @@
     .intro { display: none; }
     .rise { opacity: 1; transform: none; }
   }
+
+  /* ---------- full catalogue ---------- */
+  .catalog { padding: clamp(80px, 12vw, 150px) 0 clamp(70px, 10vw, 120px); background: var(--bg); }
+  .catalog__h { font: 700 clamp(48px, 8vw, 120px)/.9 "DM Sans", sans-serif; letter-spacing: -.04em; margin: 0 0 14px; }
+  .catalog__h i { font-family: "Instrument Serif", serif; font-weight: 400; color: var(--orange); letter-spacing: -.01em; }
+  .catalog__sub { font-family: "Caveat", cursive; font-size: 24px; margin: 0 0 34px; color: #6b6a63; }
+  .catalog .cat__tabs button[aria-selected="true"] { background: var(--orange); border-color: var(--orange); }
 </style>
 </head>
 <body>
@@ -341,7 +350,7 @@
 <nav class="nav">
   <div class="wrap nav__in">
     <a class="nav__brand" href="#top">nana<span class="o">.</span></a>
-    <div class="nav__links"><a href="#collection">каталог</a><a href="#about">про нас</a><a href="#about" data-goto-tab="3">опт</a><a href="#about" data-goto-tab="4">доставка</a></div>
+    <div class="nav__links"><a href="#catalog">каталог</a><a href="#about">про нас</a><a href="#about" data-goto-tab="3">опт</a><a href="#about" data-goto-tab="4">доставка</a></div>
     <div class="nav__right">
       <a href="#" class="nav__cart" data-cart-open>кошик<b data-cart-count>0</b></a>
       <a href="#contact" class="hide-sm">написати ↗</a>
@@ -363,26 +372,26 @@
           </h1>
         </div>
         <div class="shots">
-          <figure class="pola pola--1" data-product="wave-sand" tabindex="0" style="margin:0"><img src="../assets/img/wave-sand-mood.jpg" alt="Ваза «Хвиля» пісочна"><figcaption>зазвичай думаємо про форму.</figcaption></figure>
-          <figure class="pola pola--2" style="margin:0"><img src="../assets/img/workshop.jpg" alt="Майстриня на виробництві"><figcaption>коріння: Слов'янськ.</figcaption></figure>
-          <figure class="pola pola--3" data-product="muse" tabindex="0" style="margin:0"><img src="../assets/img/muse-white.jpg" alt="Ваза-бюст «Муза»"><figcaption>найщасливіші, коли пахне глиною.</figcaption></figure>
+          <figure class="pola pola--1" data-product="stail" tabindex="0" style="margin:0"><img src="../assets/img/cat/stail/photo1.jpg" alt="Ваза «Стайл»"><figcaption>зазвичай думаємо про форму.</figcaption></figure>
+          <figure class="pola pola--2" style="margin:0"><img src="../assets/img/workshop.jpg" alt="Майстриня на виробництві"><figcaption>з 1999. коріння: Слов'янськ.</figcaption></figure>
+          <figure class="pola pola--3" data-product="lady" tabindex="0" style="margin:0"><img src="../assets/img/cat/lady/photo2.jpg" alt="Ваза «Леді»"><figcaption>найщасливіші, коли пахне глиною.</figcaption></figure>
           <div class="thats"><svg viewBox="0 0 34 46" fill="none" stroke="#23251F" stroke-width="1.6" stroke-linecap="round"><path d="M26 44C8 40 6 22 14 4"/><path d="M8 10l6-7 5 8"/></svg>це ми</div>
         </div>
       </div>
 
       <div class="lede">
         <h2>Ми робимо вази.<br>І робимо їх <i>живими</i>.</h2>
-        <p><a href="#collection">Вази</a>, <a href="#about" data-goto-tab="2">кашпо</a> і новорічні <a href="#collection">сувеніри</a> — для дому, на подарунок і для магазинів.</p>
+        <p><a href="#catalog" data-catalog-go="vase">Вази</a>, <a href="#catalog" data-catalog-go="pot">горщики</a> і <a href="#catalog" data-catalog-go="gift">сувеніри</a> — понад 40 форм і 1000 позицій, для дому, на подарунок і для магазинів.</p>
       </div>
 
       <div class="row">
         <p class="eyebrow">Колекції</p>
         <div class="row__list">
-          <a href="#" data-product="wave-sand"><img src="../assets/img/vase-wave.jpg" alt="">Хвиля</a><span class="tag-now">новинка</span>
+          <a href="#catalog" data-catalog-go="vase"><img src="../assets/img/cat/stail/photo1.jpg" alt="">Вази</a><span class="tag-now">27 форм</span>
           <span class="row__sep">/</span>
-          <a href="#" data-product="muse"><img src="../assets/img/vase-busts.jpg" alt="">Музи</a>
+          <a href="#catalog" data-catalog-go="pot"><img src="../assets/img/cat/pot-gloria/photo1.jpg" alt="">Горщики</a>
           <span class="row__sep">/</span>
-          <a href="#" data-product="xmas-candy"><img src="../assets/img/vase-candy.jpg" alt="">Новорічна</a>
+          <a href="#catalog" data-catalog-go="xmas"><img src="../assets/img/vase-candy.jpg" alt="">Новорічна</a>
         </div>
       </div>
     </div>
@@ -393,7 +402,7 @@
     <div class="say__stick">
       <div class="say__line" id="say1"><b>ласкаво просимо</b><i>до майстерні.<svg viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2 7c60-6 140-6 296-2" fill="none" stroke="#E0522F" stroke-width="2.6" stroke-linecap="round"/></svg></i></div>
       <div class="say__line" id="say2"><b>але спершу —<br>погляньте на неї.</b></div>
-      <div class="say__vase" id="sayVase"><img src="../assets/img/vase-wave.jpg" alt="Ваза «Хвиля»"></div>
+      <div class="say__vase" id="sayVase"><img src="../assets/img/cat/sertse/photo1.jpg" alt="Ваза «Серце»"></div>
       <p class="say__hint" id="sayHint">гортайте ↓</p>
       <a class="skip" href="#collection">до каталогу →</a>
     </div>
@@ -433,7 +442,7 @@
               <button class="tab" data-tab="3" role="tab">📦 опт</button>
               <button class="tab" data-tab="4" role="tab">🚚 доставка</button>
             </div>
-            <div class="win__url">← → ↻ <span>🔒 nanaceramics.ua/ <em id="urlPath">about</em></span></div>
+            <div class="win__url">← → ↻ <span>🔒 nanaceramics.com/ <em id="urlPath">about</em></span></div>
             <div class="win__body">
 
               <div class="pane p-about is-on" data-pane="0">
@@ -516,6 +525,14 @@
   </section>
 
   <!-- ---------- contact ---------- -->
+  <section class="catalog" id="catalog">
+    <div class="wrap">
+      <h2 class="catalog__h">увесь<br><i>каталог.</i></h2>
+      <p class="catalog__sub">понад 40 форм і 1000 позицій · глянець, муар, шовк</p>
+      <div data-catalog></div>
+    </div>
+  </section>
+
   <section class="contact" id="contact">
     <div class="wrap">
       <div class="contact__grid">
@@ -523,12 +540,13 @@
         <div class="rise">
           <p>Питання про вазу, подарунок чи оптову партію — відповідаємо в Telegram та Instagram.</p>
           <div class="btns">
-            <a class="btn" href="https://t.me/nanaceramics" target="_blank" rel="noopener">Telegram ↗</a>
+            <a class="btn" href="https://t.me/+380667919580" target="_blank" rel="noopener">Telegram ↗</a>
+            <a class="btn btn--line" href="tel:+380667919580">+38 (066) 791-95-80</a>
             <a class="btn btn--line" href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">Instagram ↗</a>
           </div>
         </div>
       </div>
-      <div class="contact__meta"><span>Nana Ceramics © 2026</span><span>від глини до полиці</span><span>Зроблено в Україні</span></div>
+      <div class="contact__meta"><span>Nana Ceramics © 2026</span><span>nanaceramics1@gmail.com</span><span>м. Кам'янець-Подільський</span></div>
     </div>
     <div class="contact__huge" aria-hidden="true">nana<span></span></div>
   </section>
@@ -567,33 +585,32 @@
 
   /* ---------- collection cards ---------- */
   const lines = {
-    'wave-sand': ['Три м\'які хвилі —', 'одна спокійна форма.'],
-    'muse': ['Скульптура,', 'яка тримає квіти.'],
-    'wave-bronze': ['Улюблена «Хвиля»', 'у бронзі.'],
+    'lady': ['Задумалась —', 'і тримає квіти.'],
+    'stail': ['М\'які хвилі,', 'складені одна на одну.'],
+    'sertse': ['Сердечка, які', 'хочеться торкнутись.'],
+    'poli': ['41 сантиметр', 'і п\'ятнадцять кольорів.'],
+    'pot-gloria': ['Класика, яка', 'має шість розмірів.'],
+    'pot-kai': ['Обличчя, з якого', 'росте зелень.'],
+    'lymony': ['Літо, яке', 'стоїть на полиці.'],
     'xmas-candy': ['Свято, яке', 'стоїть на полиці.'],
-    'xmas-tree': ['Ялинка, що', 'не обсипається.'],
-    'xmas-snowman': ['Сніговик, який', 'не тане.'],
-    'xmas-candle': ['Тепле світло', 'зимових вечорів.'],
-    'pot-handmade': ['Кашпо, сформоване', 'руками.'],
   };
   const order = Object.keys(lines).filter((id) => P[id]);
   const track = document.getElementById('track');
   track.innerHTML = order.map((id, i) => {
     const p = P[id], [a, b] = lines[id], n = (p.gallery || [p.img]).length;
-    const from = p.options?.values.some((v) => v.price && v.price !== p.price) ? 'від ' : '';
     return `<article class="wc" data-product="${id}" tabindex="0" aria-label="${p.title} — відкрити">
       <div class="wc__head"><div><h3>${p.title}</h3><span class="wc__tag">${p.collection}</span></div>
         <div class="wc__brand"><b>nana</b><span>× ${String(i + 1).padStart(2, '0')}</span></div></div>
       <div class="wc__body">
         <div class="wc__txt"><h4>${a}<br><i>${b}</i></h4><p>${p.short}</p>
-          <div class="wc__buy"><span class="wc__price">${from}${p.price.toLocaleString('uk-UA')} грн${p.oldPrice ? `<s>${p.oldPrice} грн</s>` : ''}</span><span class="wc__more">Детальніше →</span></div></div>
+          <div class="wc__buy"><span class="wc__price">${NANA.priceLabel(p)}${p.oldPrice ? `<s>${p.oldPrice} грн</s>` : ''}</span><span class="wc__more">Детальніше →</span></div></div>
         <div class="wc__img"><img src="${img(p.img)}" alt="${p.title}" loading="lazy">${n > 1 ? `<span class="wc__count">${n} фото</span>` : ''}</div>
       </div></article>`;
   }).join('');
   document.getElementById('wcNum').textContent = `01 / ${String(order.length).padStart(2, '0')}`;
 
   /* ---------- collections log (tab 3) ---------- */
-  const logRows = [['wave-sand', 'Хвиля', 'вази для дому', 'нове', true], ['muse', 'Музи', 'вази-бюсти', 'хіт', false], ['xmas-candy', 'Новорічна', 'вази й сувеніри', 'сезон', true], ['pot-handmade', 'Кашпо', 'горщики для квітів', 'опт', false]];
+  const logRows = [['lady', 'Вази-обличчя', 'Леді, Мадам, Мрія, Кім', 'хіт', true], ['poli', 'Високі вази', 'Полі, Спектр, Самбука', 'нове', false], ['pot-gloria', 'Горщики', '13 форм, 0,3–14 л', 'опт', true], ['vin-vona', 'Сувеніри', 'статуетки, скарбнички', 'подарунок', false], ['xmas-candy', 'Новорічна', 'вази з ручним декором', 'сезон', true]];
   document.getElementById('log').innerHTML = logRows.filter((r) => P[r[0]]).map(([id, name, sub, badge, on], i) =>
     `<div class="log__row" data-product="${id}" tabindex="0"><small>0${i + 1}</small><img src="${img(P[id].img)}" alt=""><b>${name}</b><span>${sub}</span><em class="badge ${on ? 'badge--on' : ''}">${badge}</em></div>`).join('');
 
@@ -675,6 +692,7 @@
   document.querySelectorAll('.rise').forEach((el) => io.observe(el));
 })();
 </script>
+<script src="../assets/catalog.js"></script>
 <script src="../assets/cart.js"></script>
 <script src="../assets/product-modal.js"></script>
 </body>

@@ -4,6 +4,7 @@
   const base = new URL('img/', document.currentScript.src).href;
   const { products, telegram } = window.NANA;
   const fmt = (n) => n.toLocaleString('uk-UA') + ' грн';
+  const ask = (p) => p == null;
   const bagIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
   const tgIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 4 2.5 11.2c-.9.4-.9 1.5 0 1.8l4.6 1.5 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.4 4.7 3.5c.6.4 1.4.1 1.6-.6L22.4 5.3c.2-.9-.6-1.6-1.4-1.3zM9.8 14.4l-.4 3.6-1.4-4.4 9.8-6.2z"/></svg>';
 
@@ -22,6 +23,7 @@
     const v = state.p.options?.values[state.opt];
     return v?.price ?? state.p.price;
   }
+  const sizeName = () => state.p.sizes?.values[state.size]?.name;
 
   function render() {
     const { p } = state;
@@ -42,18 +44,19 @@
       <div class="pm__info">
         <p class="pm__eyebrow">${p.collection}</p>
         <h2 class="pm__title" id="pmTitle">${p.title}</h2>
-        <div class="pm__price">${fmt(unit)}${showOld ? `<s>${fmt(p.oldPrice)}</s><span class="pm__badge">−${Math.round((1 - p.price / p.oldPrice) * 100)}%</span>` : ''}</div>
+        <div class="pm__price">${ask(unit) ? '<span class="pm__ask">Ціна за запитом</span>' : fmt(unit)}${showOld ? `<s>${fmt(p.oldPrice)}</s><span class="pm__badge">−${Math.round((1 - p.price / p.oldPrice) * 100)}%</span>` : ''}</div>
         <p class="pm__short">${p.short}</p>
-        ${p.options ? `<div><p class="pm__label">${p.options.label}</p><div class="pm__chips">${p.options.values.map((v, i) => `<button class="pm__chip ${i === state.opt ? 'is-active' : ''}" data-opt="${i}">${v.name}</button>`).join('')}</div></div>` : ''}
+        ${p.options ? `<div><p class="pm__label">${p.options.label}${p.options.values.length > 1 ? ` <span class="pm__count">· ${p.options.values.length}</span>` : ''}: <b>${p.options.values[state.opt].name}</b></p><div class="pm__chips">${p.options.values.map((v, i) => `<button class="pm__chip ${i === state.opt ? 'is-active' : ''}" data-opt="${i}">${v.name}</button>`).join('')}</div></div>` : ''}
+        ${p.sizes ? `<div><p class="pm__label">${p.sizes.label}</p><div class="pm__chips">${p.sizes.values.map((v, i) => `<button class="pm__chip ${i === state.size ? 'is-active' : ''}" data-size="${i}">${v.name}</button>`).join('')}</div></div>` : ''}
         <div class="pm__buy">
           <div class="pm__qty"><button data-qty="-1" aria-label="Менше">−</button><span aria-live="polite">${state.qty}</span><button data-qty="1" aria-label="Більше">+</button></div>
           ${window.NanaCart
-            ? `<button class="pm__order" data-tocart>${bagIcon}${state.added ? 'Додано ✓ · Відкрити кошик' : `У кошик · ${fmt(unit * state.qty)}`}</button>
+            ? `<button class="pm__order" data-tocart>${bagIcon}${state.added ? 'Додано ✓ · Відкрити кошик' : ask(unit) ? 'Додати до запиту' : `У кошик · ${fmt(unit * state.qty)}`}</button>
         </div>
-        <a class="pm__order pm__order--ghost" href="https://t.me/${telegram}" target="_blank" rel="noopener" data-order>${tgIcon}Швидке замовлення в Telegram</a>`
-            : `<a class="pm__order" href="https://t.me/${telegram}" target="_blank" rel="noopener" data-order>${tgIcon}Замовити в Telegram · ${fmt(unit * state.qty)}</a>
+        <a class="pm__order pm__order--ghost" href="https://t.me/${telegram}" target="_blank" rel="noopener" data-order>${tgIcon}${ask(unit) ? 'Дізнатися ціну в Telegram' : 'Швидке замовлення в Telegram'}</a>`
+            : `<a class="pm__order" href="https://t.me/${telegram}" target="_blank" rel="noopener" data-order>${tgIcon}Замовити в Telegram${ask(unit) ? '' : ' · ' + fmt(unit * state.qty)}</a>
         </div>`}
-        <p class="pm__hint" data-hint>${window.NanaCart ? 'Швидке замовлення: відкриємо чат і скопіюємо текст із цим товаром.' : 'Відкриється чат із нами, текст замовлення скопіюємо автоматично.'}</p>
+        <p class="pm__hint" data-hint>${ask(unit) ? 'Ціни уточнюємо індивідуально: роздріб і опт. Відкриємо чат і скопіюємо текст із цим товаром.' : window.NanaCart ? 'Швидке замовлення: відкриємо чат і скопіюємо текст із цим товаром.' : 'Відкриється чат із нами, текст замовлення скопіюємо автоматично.'}</p>
         <div class="pm__perks"><span>📦 Відправка Новою поштою по всій Україні</span><span>🛡️ Пакуємо кераміку в кілька шарів</span><span>🤝 Для магазинів — оптові ціни</span></div>
         <div><p class="pm__label">Опис</p><p class="pm__desc">${p.description}</p></div>
         <table class="pm__specs"><tbody>${p.specs.map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</tbody></table>
@@ -70,13 +73,15 @@
 
   function orderText() {
     const v = state.p.options?.values[state.opt];
-    return `Вітаю! Хочу замовити:\n• ${state.p.title}${v ? ` (${v.name})` : ''}\n• Кількість: ${state.qty} шт.\n• Сума: ${fmt(priceOf() * state.qty)}\n\nПосилання: ${location.origin + location.pathname}#product=${state.id}`;
+    const opts = [v?.name, sizeName()].filter(Boolean).join(', ');
+    const u = priceOf();
+    return `Вітаю! ${ask(u) ? 'Підкажіть, будь ласка, ціну:' : 'Хочу замовити:'}\n• ${state.p.title}${opts ? ` (${opts})` : ''}\n• Кількість: ${state.qty} шт.${ask(u) ? '' : `\n• Сума: ${fmt(u * state.qty)}`}\n\nПосилання: ${location.origin + location.pathname}#product=${state.id}`;
   }
 
   function open(id, { push = true } = {}) {
     const p = products[id]; if (!p) return;
     lastFocus = document.activeElement;
-    state = { id, p, img: 0, opt: 0, qty: 1 };
+    state = { id, p, img: 0, opt: 0, size: 0, qty: 1 };
     render();
     root.classList.add('is-open'); root.setAttribute('aria-hidden', 'false');
     document.body.classList.add('pm-lock');
@@ -113,12 +118,12 @@
 
   // interactions inside the window
   root.addEventListener('click', async (e) => {
-    const t = e.target.closest('[data-close],[data-step],[data-img],[data-opt],[data-qty],[data-order],[data-tocart]');
+    const t = e.target.closest('[data-close],[data-step],[data-img],[data-opt],[data-size],[data-qty],[data-order],[data-tocart]');
     if (!t || !state) return;
     if (t.dataset.close !== undefined) return close();
     if (t.dataset.tocart !== undefined) {
       if (state.added) return window.NanaCart.open();
-      window.NanaCart.add(state.id, state.opt, state.qty, { silent: true });
+      window.NanaCart.add(state.id, state.opt, state.qty, { silent: true, size: state.size });
       state.added = true; const keep = state.img; render(); setImg(keep); return;
     }
     if (t.dataset.step) return setImg(state.img + +t.dataset.step);
@@ -129,6 +134,7 @@
       const keepImg = jump ?? state.img;
       render(); setImg(keepImg); return;
     }
+    if (t.dataset.size) { state.size = +t.dataset.size; state.added = false; const keep = state.img; render(); setImg(keep); return; }
     if (t.dataset.qty) { state.added = false; state.qty = Math.min(99, Math.max(1, state.qty + +t.dataset.qty)); const keep = state.img; render(); setImg(keep); return; }
     if (t.dataset.order !== undefined) {
       try { await navigator.clipboard.writeText(orderText()); dialog.querySelector('[data-hint]').textContent = '✓ Текст замовлення скопійовано — вставте його в чат.'; }
