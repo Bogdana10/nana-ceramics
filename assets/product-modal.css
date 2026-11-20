@@ -1,0 +1,73 @@
+/* Product window shared by all three options.
+   Each page themes it with these variables on :root:
+   --pm-bg --pm-ink --pm-muted --pm-line --pm-accent --pm-accent-ink --pm-radius --pm-head --pm-body */
+[data-product] { cursor: pointer; }
+
+.pm { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px; visibility: hidden; }
+.pm.is-open { visibility: visible; }
+.pm__backdrop { position: absolute; inset: 0; background: rgba(20, 14, 10, .55); opacity: 0; transition: opacity .3s; backdrop-filter: blur(3px); }
+.pm.is-open .pm__backdrop { opacity: 1; }
+
+.pm__dialog {
+  position: relative; width: min(1040px, 100%); max-height: calc(100vh - 48px); max-height: calc(100dvh - 48px); overflow: auto;
+  display: grid; grid-template-columns: 1.05fr 1fr;
+  background: var(--pm-bg, #fff); color: var(--pm-ink, #1d1a17); font-family: var(--pm-body, system-ui, sans-serif);
+  border-radius: var(--pm-radius, 18px); box-shadow: 0 30px 80px rgba(0,0,0,.3);
+  opacity: 0; transform: translateY(24px) scale(.98); transition: opacity .3s, transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.pm.is-open .pm__dialog { opacity: 1; transform: none; }
+.pm__close { position: absolute; top: 12px; right: 12px; z-index: 3; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); color: #1d1a17; font-size: 22px; line-height: 1; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+
+/* gallery */
+.pm__gallery { padding: 18px; display: flex; flex-direction: column; gap: 12px; position: sticky; top: 0; align-self: start; }
+.pm__main { position: relative; aspect-ratio: 4/5; border-radius: calc(var(--pm-radius, 18px) * .7); overflow: hidden; background: rgba(0,0,0,.05); touch-action: pan-y; }
+.pm__main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s; }
+.pm__main img.is-active { opacity: 1; }
+.pm__arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); color: #1d1a17; font-size: 20px; cursor: pointer; z-index: 2; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+.pm__arrow--prev { left: 10px; } .pm__arrow--next { right: 10px; }
+.pm__counter { position: absolute; left: 12px; bottom: 12px; background: rgba(0,0,0,.55); color: #fff; font-size: 12px; padding: 3px 9px; border-radius: 99px; z-index: 2; }
+.pm__thumbs { display: flex; gap: 10px; }
+.pm__thumb { width: 68px; aspect-ratio: 1; border-radius: 10px; overflow: hidden; border: 2px solid transparent; padding: 0; cursor: pointer; background: none; opacity: .65; transition: opacity .2s, border-color .2s; }
+.pm__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pm__thumb.is-active { border-color: var(--pm-accent, #9C4A26); opacity: 1; }
+
+/* info */
+.pm__info { padding: 34px 34px 30px 18px; display: flex; flex-direction: column; gap: 16px; }
+.pm__eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--pm-muted, #6f6861); margin: 0; }
+.pm__title { font-family: var(--pm-head, inherit); font-size: clamp(26px, 3vw, 34px); line-height: 1.12; margin: 0; font-weight: 600; padding-right: 30px; }
+.pm__price { display: flex; align-items: baseline; gap: 10px; font-size: 26px; font-weight: 700; }
+.pm__price s { font-size: 16px; font-weight: 400; color: var(--pm-muted, #6f6861); }
+.pm__price .pm__badge { font-size: 12px; font-weight: 600; background: var(--pm-accent, #9C4A26); color: var(--pm-accent-ink, #fff); padding: 3px 9px; border-radius: 99px; align-self: center; }
+.pm__short { margin: 0; font-size: 15px; line-height: 1.6; }
+.pm__label { font-size: 13px; font-weight: 600; margin: 0 0 8px; }
+.pm__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.pm__chip { border: 1px solid var(--pm-line, #e2dcd5); background: transparent; color: inherit; padding: 9px 14px; border-radius: 99px; font: inherit; font-size: 13.5px; cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+.pm__chip.is-active { border-color: var(--pm-ink, #1d1a17); background: var(--pm-ink, #1d1a17); color: var(--pm-bg, #fff); }
+.pm__buy { display: flex; gap: 12px; align-items: stretch; flex-wrap: wrap; }
+.pm__qty { display: flex; align-items: center; border: 1px solid var(--pm-line, #e2dcd5); border-radius: 12px; }
+.pm__qty button { width: 42px; height: 100%; min-height: 50px; border: 0; background: none; color: inherit; font-size: 20px; cursor: pointer; }
+.pm__qty span { min-width: 26px; text-align: center; font-weight: 600; }
+.pm__order { flex: 1; min-width: 220px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 20px; border-radius: 12px; border: 0; background: var(--pm-accent, #9C4A26); color: var(--pm-accent-ink, #fff); font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; text-decoration: none; transition: filter .2s, transform .2s; }
+.pm__order:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.pm__order svg { width: 20px; height: 20px; }
+.pm__order--ghost { flex: none; width: 100%; background: transparent; color: inherit; border: 1px solid var(--pm-line, #e2dcd5); font-weight: 600; margin-top: -4px; }
+.pm__order--ghost:hover { border-color: var(--pm-ink, #1d1a17); filter: none; }
+.pm__hint { font-size: 12.5px; color: var(--pm-muted, #6f6861); margin: -6px 0 0; min-height: 1.4em; }
+.pm__desc { margin: 4px 0 0; font-size: 14.5px; line-height: 1.7; }
+.pm__specs { width: 100%; border-collapse: collapse; font-size: 14px; }
+.pm__specs td { padding: 9px 0; border-top: 1px solid var(--pm-line, #e2dcd5); vertical-align: top; }
+.pm__specs td:first-child { color: var(--pm-muted, #6f6861); width: 40%; padding-right: 12px; }
+.pm__perks { display: grid; gap: 6px; font-size: 13px; color: var(--pm-muted, #6f6861); padding: 14px 16px; border-radius: 12px; background: rgba(0,0,0,.035); }
+
+body.pm-lock { overflow: hidden; }
+
+@media (max-width: 760px) {
+  .pm { padding: 0; place-items: end stretch; }
+  .pm__dialog { grid-template-columns: 1fr; max-height: 94dvh; border-radius: var(--pm-radius, 18px) var(--pm-radius, 18px) 0 0; transform: translateY(100%); }
+  .pm__gallery { position: static; padding: 12px 12px 0; }
+  .pm__main { aspect-ratio: 1; }
+  .pm__thumb { width: 56px; }
+  .pm__info { padding: 18px 18px 28px; }
+  .pm__order { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .pm__dialog, .pm__backdrop, .pm__main img { transition: none; } }

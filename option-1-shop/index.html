@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nana Ceramics — керамічні вази та горщики</title>
+<meta name="description" content="Nana Ceramics — український виробник керамічних горщиків, ваз та сувенірів. Опт та роздріб, ручна робота.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/logo.css">
+<link rel="stylesheet" href="../assets/product-modal.css">
+<link rel="stylesheet" href="../assets/cart.css">
+<style>
+  :root {
+    --clay: #9C4A26;        /* terracotta from the logo */
+    --clay-dark: #7A3519;
+    --sand: #D2A05C;
+    --ink: #1d1a17;
+    --muted: #6f6861;
+    --line: #e7e2dc;
+    --bg-soft: #f3f0ec;
+    --radius: 18px;
+    /* product window theme */
+    --pm-bg: #fff; --pm-ink: var(--ink); --pm-muted: var(--muted); --pm-line: var(--line);
+    --pm-accent: var(--clay); --pm-accent-ink: #fff; --pm-radius: 20px;
+    --pm-head: "Montserrat", sans-serif; --pm-body: "Montserrat", sans-serif;
+  }
+  .card { outline-offset: 4px; }
+  .card__title { transition: color .2s; }
+  .card:hover .card__title { color: var(--clay); }
+  .card__more { position: absolute; left: 50%; bottom: 12px; transform: translate(-50%, 8px); opacity: 0; background: rgba(255,255,255,.95); padding: 7px 14px; border-radius: 99px; font-size: 12px; font-weight: 600; white-space: nowrap; transition: opacity .25s, transform .25s; }
+  .card:hover .card__more { opacity: 1; transform: translate(-50%, 0); }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Montserrat", system-ui, sans-serif; color: var(--ink); background: #fff; font-size: 15px; line-height: 1.55; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+  /* ---------- header ---------- */
+  .topbar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px 0 14px; gap: 16px; }
+  .topbar__social { display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: 12px; line-height: 1.25; }
+  .topbar__social svg { width: 20px; height: 20px; color: var(--ink); }
+  .topbar__contact { display: flex; justify-content: flex-end; align-items: center; gap: 18px; font-size: 12px; }
+  .topbar__phone { font-weight: 600; font-size: 15px; }
+  .topbar__hours { color: var(--muted); line-height: 1.3; }
+  .lang { border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; background: none; }
+
+  .nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 54px; gap: 20px; }
+  .nav__links { display: flex; gap: 26px; font-size: 13.5px; overflow-x: auto; scrollbar-width: none; }
+  .nav__links a { white-space: nowrap; padding: 4px 0; border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .nav__links a:hover { border-color: var(--ink); }
+  .nav__links .sale { color: var(--clay); font-weight: 600; }
+  .nav__icons { display: flex; gap: 16px; }
+  .icon-btn { position: relative; background: none; border: 0; padding: 4px; color: var(--ink); }
+  .icon-btn svg { width: 21px; height: 21px; }
+  .badge { position: absolute; top: -3px; right: -5px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 99px; background: var(--clay); color: #fff; font-size: 10px; font-weight: 600; display: grid; place-items: center; }
+
+  /* ---------- category slider ---------- */
+  .cats { padding: 30px 0 10px; position: relative; }
+  .cats__track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 3*20px)/4); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .cat { position: relative; scroll-snap-align: start; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3/4.3; background: var(--bg-soft); }
+  .cat img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+  .cat:hover img { transform: scale(1.04); }
+  .cat__label { position: absolute; left: 0; right: 0; background: rgba(255,255,255,.92); text-align: center; padding: 12px 14px; }
+  .cat__label--top { top: 0; } .cat__label--bottom { bottom: 0; }
+  .cat__label b { display: block; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  .cat__label span { display: block; font-size: 10.5px; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+  .cats__arrow { position: absolute; top: 50%; width: 38px; height: 38px; border-radius: 50%; border: 0; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,.12); display: grid; place-items: center; z-index: 2; }
+  .cats__arrow--prev { left: -12px; } .cats__arrow--next { right: -12px; }
+
+  /* ---------- benefits ---------- */
+  .benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 34px 0 46px; }
+  .benefit { display: flex; gap: 12px; align-items: flex-start; font-size: 12px; color: var(--muted); }
+  .benefit svg { flex: none; width: 30px; height: 30px; color: var(--clay); }
+  .benefit b { display: block; color: var(--ink); font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+
+  /* ---------- products ---------- */
+  .section { padding: 60px 0; }
+  .section--soft { background: var(--bg-soft); }
+  .section__head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 26px; gap: 20px; }
+  .h2 { font-size: clamp(26px, 3.2vw, 36px); font-weight: 500; margin: 0; letter-spacing: -.01em; }
+  .link-more { font-size: 13px; font-weight: 500; border-bottom: 1px solid currentColor; white-space: nowrap; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px 20px; }
+  .card__img { position: relative; aspect-ratio: 4/5; border-radius: 12px; overflow: hidden; background: #e9e4de; }
+  .card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .card:hover .card__img img { transform: scale(1.04); }
+  .tag { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; background: #fff; }
+  .tag--sale { background: var(--clay); color: #fff; }
+  .card__title { margin: 14px 0 4px; font-size: 13px; text-transform: uppercase; letter-spacing: .02em; line-height: 1.35; min-height: 2.7em; }
+  .card__price { font-weight: 700; font-size: 14px; }
+  .card__price s { color: var(--muted); font-weight: 400; margin-left: 6px; font-size: 12.5px; }
+  .card__row { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; gap: 10px; }
+  .fav { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--ink); background: none; display: grid; place-items: center; transition: background .2s, color .2s; }
+  .fav svg { width: 17px; height: 17px; }
+  .fav.is-on { background: var(--clay); border-color: var(--clay); color: #fff; }
+  .add { border: 1px solid var(--clay); color: var(--clay); background: none; border-radius: 8px; padding: 9px 14px; font-size: 12.5px; font-weight: 600; transition: background .2s, color .2s; }
+  .add:hover, .add.is-done { background: var(--clay); color: #fff; }
+
+  /* ---------- wholesale banner ---------- */
+  .opt { display: grid; grid-template-columns: 1.1fr 1fr; border-radius: 24px; overflow: hidden; background: var(--clay); color: #fff; }
+  .opt__body { padding: clamp(28px, 5vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+  .opt__body p { margin: 0; opacity: .88; max-width: 44ch; }
+  .opt__list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin: 6px 0 10px; padding: 0; list-style: none; font-size: 13.5px; }
+  .opt__list li::before { content: "✦ "; color: var(--sand); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: 10px; font-weight: 600; font-size: 14px; border: 0; }
+  .btn--light { background: #fff; color: var(--clay-dark); align-self: flex-start; }
+  .opt__img { min-height: 320px; background: url(../assets/img/vase-xmas-shelf.jpg) center/cover; }
+
+  /* ---------- about ---------- */
+  .about { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(30px, 6vw, 90px); align-items: center; }
+  .about__photos { position: relative; }
+  .about__photos img { border-radius: 22px; width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .about__photos img + img { position: absolute; width: 46%; right: -8%; bottom: -10%; border: 6px solid #fff; aspect-ratio: 3/4; }
+  .about h3 { font-weight: 500; font-size: 26px; margin: 0 0 18px; }
+  .about p { margin: 0 0 14px; max-width: 60ch; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--clay-dark); color: #fff; padding: 56px 0 30px; margin-top: 60px; }
+  .footer__grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1.3fr; gap: 30px; }
+  footer h4 { font-size: 17px; font-weight: 600; margin: 0 0 16px; }
+  footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 13.5px; opacity: .85; }
+  .footer__contacts { display: grid; gap: 8px; font-weight: 600; font-size: 14px; }
+  .footer__social { display: flex; gap: 12px; margin-top: 16px; }
+  .footer__social a { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.14); display: grid; place-items: center; }
+  .footer__social svg { width: 17px; height: 17px; }
+  .footer__bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.18); font-size: 12px; opacity: .7; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+  .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 120px); background: var(--ink); color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 13px; transition: transform .35s ease; z-index: 50; }
+  .toast.show { transform: translate(-50%, 0); }
+
+  @media (max-width: 900px) {
+    .topbar { grid-template-columns: auto 1fr; }
+    .topbar__social { display: none; }
+    .topbar__hours, .lang { display: none; }
+    .cats__track { grid-auto-columns: 62%; }
+    .cats__arrow { display: none; }
+    .benefits { grid-template-columns: 1fr 1fr; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 22px 14px; }
+    .opt, .about { grid-template-columns: 1fr; }
+    .opt__img { min-height: 240px; }
+    .about__photos img + img { right: 0; }
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+    .nav__links { gap: 18px; }
+  }
+  @media (max-width: 520px) {
+    .topbar__phone { font-size: 13px; }
+    .card__row { flex-direction: row; }
+    .add { padding: 8px 10px; font-size: 11.5px; }
+    .opt__list { grid-template-columns: 1fr; }
+    .footer__grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-cart-fab="off">
+
+<header class="wrap topbar">
+  <a class="topbar__social" href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+    <span>Підпишись на<br>наш Instagram</span>
+  </a>
+  <a href="#" class="nana-logo"></a>
+  <div class="topbar__contact">
+    <a class="topbar__phone" href="tel:+380000000000">+38 0XX XXX XX XX</a>
+    <span class="topbar__hours">Пн–Сб<br>з 9:00 до 18:00</span>
+    <button class="lang">UA ▾</button>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav__links">
+      <a href="#new">Вази</a>
+      <a href="#new">Горщики для квітів</a>
+      <a href="#xmas">Новорічна колекція</a>
+      <a href="#new">Сувеніри</a>
+      <a href="#opt">Опт</a>
+      <a href="#about">Виробництво</a>
+      <a href="#new" class="sale">SALE</a>
+      <a href="#footer">Доставка та оплата</a>
+    </div>
+    <div class="nav__icons">
+      <button class="icon-btn" aria-label="Пошук"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="icon-btn" aria-label="Обране"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span class="badge" id="favCount">0</span></button>
+      <button class="icon-btn" aria-label="Кошик" data-cart-open><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge" data-cart-count>0</span></button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <section class="wrap cats">
+    <button class="cats__arrow cats__arrow--prev" aria-label="Назад" data-dir="-1">‹</button>
+    <div class="cats__track" id="catsTrack">
+      <a class="cat" href="#new"><div class="cat__label cat__label--top"><b>Вази</b><span>форми, в яких квітам добре</span></div><img src="../assets/img/vase-wave.jpg" alt="Пісочна ваза «Хвиля» з гілками"></a>
+      <a class="cat" href="#new"><img src="../assets/img/vase-busts.jpg" alt="Вази-бюсти білого та чорного кольору"><div class="cat__label cat__label--bottom"><b>Декор</b><span>скульптурні вази та сувеніри для дому</span></div></a>
+      <a class="cat" href="#xmas"><div class="cat__label cat__label--top"><b>Новорічна колекція</b><span>святкові вази ручного розпису</span></div><img src="../assets/img/vase-candy.jpg" alt="Біла новорічна ваза з карамельними тростинками"></a>
+      <a class="cat" href="#about"><img src="../assets/img/workshop.jpg" alt="Майстриня формує горщик на виробництві"><div class="cat__label cat__label--bottom"><b>Горщики для квітів</b><span>власне виробництво, опт та роздріб</span></div></a>
+      <a class="cat" href="#opt"><div class="cat__label cat__label--top"><b>Опт</b><span>для квіткових магазинів і шоурумів</span></div><img src="../assets/img/vase-xmas-shelf.jpg" alt="Полиця з керамічними вазами на складі"></a>
+    </div>
+    <button class="cats__arrow cats__arrow--next" aria-label="Далі" data-dir="1">›</button>
+  </section>
+
+  <section class="wrap benefits">
+    <div class="benefit"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9h17v14H3zM20 14h5l4 4v5h-9z"/><circle cx="9" cy="24" r="2.5"/><circle cx="24" cy="24" r="2.5"/></svg><div><b>Відправки щодня</b>Нова пошта та Укрпошта по всій Україні</div></div>
+    <div class="benefit"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10 16 4l12 6v12l-12 6-12-6z"/><path d="M4 10l12 6 12-6M16 16v12"/></svg><div><b>Безпечна упаковка</b>Кераміка доїде цілою — пакуємо в кілька шарів</div></div>
+    <div class="benefit"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 26h16M10 26l-2-14h16l-2 14M12 12c0-4 2-7 4-7s4 3 4 7"/></svg><div><b>Ручна робота</b>Кожен виріб формуємо та глазуруємо самі</div></div>
+    <div class="benefit"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="24" height="16" rx="3"/><path d="M4 13h24M9 19h5"/></svg><div><b>Опт і роздріб</b>Спеціальні ціни від мінімальної партії</div></div>
+  </section>
+
+  <section class="section section--soft" id="new">
+    <div class="wrap">
+      <div class="section__head"><h2 class="h2">Новинки</h2><a class="link-more" href="#">Дивитись усі</a></div>
+      <div class="grid" id="newGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="xmas">
+    <div class="wrap">
+      <div class="section__head"><h2 class="h2">Новорічна колекція</h2><a class="link-more" href="#">Вся колекція</a></div>
+      <div class="grid" id="xmasGrid"></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="opt">
+    <div class="opt">
+      <div class="opt__body">
+        <h2 class="h2">Співпраця оптом</h2>
+        <p>Виробляємо горщики та вази на власних потужностях, тож можемо тримати чесну ціну та стабільні обсяги для квіткових магазинів, шоурумів і декораторів.</p>
+        <ul class="opt__list">
+          <li>Ціни від виробника</li><li>Брендування під замовлення</li>
+          <li>Стабільні партії</li><li>Відправка по Україні</li>
+        </ul>
+        <a class="btn btn--light" href="#footer">Отримати оптовий прайс</a>
+      </div>
+      <div class="opt__img" role="img" aria-label="Вази на складі виробництва"></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about">
+      <div class="about__photos">
+        <img src="../assets/img/workshop.jpg" alt="Майстриня на виробництві Nana Ceramics">
+        <img src="../assets/img/factory.jpg" alt="Новий цех виробництва">
+      </div>
+      <div>
+        <h3>Привіт, ми — Nana Ceramics</h3>
+        <p>Ми український виробник керамічних горщиків, ваз та сувенірів. Від гіпсової форми до глазурі — усе робимо руками на власному виробництві.</p>
+        <p>Через війну нам довелося перевезти виробництво зі Слов'янська. Ми зібрали обладнання, команду та форми — і запустили цех заново, щоб і далі робити речі, які приносять затишок у дім.</p>
+        <p>Працюємо з людьми, які купують одну вазу для себе, і з магазинами, яким потрібні сотні горщиків на сезон.</p>
+        <p><b>Дякуємо, що ви тут!</b></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div><span class="nana-logo" data-variant="light" style="font-size:14px"></span><p style="font-size:13px;opacity:.75;margin-top:16px;max-width:30ch">Керамічні горщики, вази та сувеніри ручної роботи. Зроблено в Україні.</p></div>
+      <div><h4>Каталог</h4><ul><li>Вази</li><li>Горщики для квітів</li><li>Новорічна колекція</li><li>Сувеніри</li><li>SALE</li></ul></div>
+      <div><h4>Клієнтам</h4><ul><li>Доставка та оплата</li><li>Обмін та повернення</li><li>Оптова співпраця</li><li>Договір оферти</li></ul></div>
+      <div><h4>Контакти</h4>
+        <div class="footer__contacts"><span>Пн–Сб з 9:00 до 18:00</span><span>+38 0XX XXX XX XX</span><span>hello@nanaceramics.com</span><span>Україна</span></div>
+        <div class="footer__social">
+          <a href="https://www.instagram.com/nanaceramics1/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+          <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 4 2.5 11.2c-.9.4-.9 1.5 0 1.8l4.6 1.5 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.4 4.7 3.5c.6.4 1.4.1 1.6-.6L22.4 5.3c.2-.9-.6-1.6-1.4-1.3zM9.8 14.4l-.4 3.6-1.4-4.4 9.8-6.2z"/></svg></a>
+          <a href="#" aria-label="Viber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3c5 0 8.5 2.5 8.5 8s-3.5 8-8.5 8l-3 2v-2.5C5 17 3.5 14.5 3.5 11 3.5 5.5 7 3 12 3z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Nana Ceramics</span><span>Варіант 1 · інтернет-магазин</span></div>
+  </div>
+</footer>
+
+
+<script src="../assets/logo.js"></script>
+<script src="../assets/products.js"></script>
+<script>
+  const IMG = '../assets/img/';
+  const P = NANA.products;
+  const grids = {
+    newGrid: [['wave-sand', 'sale'], ['muse', 'sale'], ['wave-bronze', 'new'], ['pot-handmade', 'new']],
+    xmasGrid: [['xmas-candy', 'new'], ['xmas-tree', 'new'], ['xmas-snowman'], ['xmas-candle']],
+  };
+  const heart = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
+  for (const [gridId, list] of Object.entries(grids)) {
+    document.getElementById(gridId).innerHTML = list.map(([id, tag]) => { const x = P[id]; return `
+      <article class="card" data-product="${id}" tabindex="0" aria-label="${x.title} — відкрити">
+        <div class="card__img">
+          <img src="${IMG + x.img}" alt="${x.title}" loading="lazy">
+          ${tag ? `<span class="tag ${tag === 'sale' ? 'tag--sale' : ''}">${tag === 'sale' ? '−' + Math.round((1 - x.price / x.oldPrice) * 100) + '%' : 'Новинка'}</span>` : ''}
+          <span class="card__more">Детальніше · ${(x.gallery || []).length} фото</span>
+        </div>
+        <h3 class="card__title">${x.title}</h3>
+        <div class="card__price">${x.options?.values[0].price && x.options.values.some(v => v.price !== x.price) ? 'від ' : ''}${x.price} грн${x.oldPrice ? `<s>${x.oldPrice} грн</s>` : ''}</div>
+        <div class="card__row"><button class="fav" aria-label="В обране">${heart}</button><button class="add" data-id="${id}">Додати в кошик</button></div>
+      </article>`; }).join('');
+  }
+  let favs = 0;
+  document.addEventListener('click', (e) => {
+    const add = e.target.closest('.add');
+    if (add) {
+      NanaCart.add(add.dataset.id);
+      add.classList.add('is-done'); add.textContent = 'Додано ✓';
+      setTimeout(() => { add.classList.remove('is-done'); add.textContent = 'Додати в кошик'; }, 1600);
+    }
+    const fav = e.target.closest('.fav');
+    if (fav) { fav.classList.toggle('is-on'); favs += fav.classList.contains('is-on') ? 1 : -1; document.getElementById('favCount').textContent = favs; }
+    const arrow = e.target.closest('.cats__arrow');
+    if (arrow) { const tr = document.getElementById('catsTrack'); tr.scrollBy({ left: tr.clientWidth / 2 * arrow.dataset.dir, behavior: 'smooth' }); }
+  });
+</script>
+<script src="../assets/cart.js"></script>
+<script src="../assets/product-modal.js"></script>
+</body>
+</html>

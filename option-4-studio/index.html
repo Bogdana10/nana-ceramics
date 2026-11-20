@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nana Ceramics — майстерня</title>
+<meta name="description" content="Nana Ceramics — керамічні вази, кашпо та новорічні сувеніри ручної роботи. Зроблено в Україні.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/product-modal.css">
+<link rel="stylesheet" href="../assets/cart.css">
+<style>
+  :root {
+    --bg: #F1EEE8; --ink: #23251F; --muted: #77756E; --line: #DCD8CF; --orange: #E0522F; --night: #151314; --green: #3E8E5B;
+    --sans: "DM Sans", system-ui, sans-serif; --serif: "Instrument Serif", Georgia, serif; --hand: "Caveat", cursive;
+    --pm-bg: #F6F3EE; --pm-ink: var(--ink); --pm-muted: var(--muted); --pm-line: var(--line); --pm-accent: var(--orange); --pm-accent-ink: #fff;
+    --pm-radius: 18px; --pm-head: var(--sans); --pm-body: var(--sans);
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; }
+  html { overflow-x: clip; scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { width: min(1340px, 100% - 64px); margin: 0 auto; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0; }
+  .serif { font-family: var(--serif); font-weight: 400; }
+  .serif i, i.serif { font-style: italic; }
+  .hand { font-family: var(--hand); }
+  .o { color: var(--orange); }
+
+  /* ---------- intro loader ---------- */
+  .intro { position: fixed; inset: 0; z-index: 2000; background: var(--orange) var(--grain); color: #FBE9E2; display: grid; place-items: center; transition: transform .9s cubic-bezier(.7,0,.2,1); }
+  .intro.is-done { transform: translateY(-100%); }
+  .intro.is-gone { display: none; }
+  .intro__c { position: absolute; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; line-height: 1.8; }
+  .intro__c--tl { top: 22px; left: 26px; } .intro__c--tr { top: 22px; right: 26px; text-align: right; } .intro__c--br { bottom: 26px; right: 26px; }
+  .intro__pct { position: absolute; left: 24px; bottom: 14px; font-size: clamp(44px, 6vw, 64px); font-weight: 500; letter-spacing: -.03em; color: #fff; font-variant-numeric: tabular-nums; }
+  .intro svg { width: min(760px, 88vw); overflow: visible; }
+  .intro .guide { stroke: rgba(255,255,255,.75); stroke-width: 1; fill: none; stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.1s ease forwards; }
+  .intro .guide-l { fill: rgba(255,255,255,.8); font: 500 9px var(--sans); letter-spacing: .14em; opacity: 0; animation: fade .4s .5s forwards; }
+  .intro .word { font: 700 190px var(--sans); letter-spacing: -10px; }
+  .intro .word--line { fill: none; stroke: #fff; stroke-width: 1.2; stroke-dasharray: 1400; stroke-dashoffset: 1400; animation: draw 1.6s .35s ease forwards; }
+  .intro .word--fill { fill: #F7F3EE; }
+  .intro .dot { fill: var(--night); stroke: #F7F3EE; stroke-width: 2; transform-origin: center; transform-box: fill-box; transform: scale(0); transition: transform .5s cubic-bezier(.2,1.6,.4,1); }
+  .intro.is-full .dot { transform: scale(1); }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes fade { to { opacity: 1; } }
+  .intro__skip { position: absolute; bottom: 70px; right: 26px; background: none; border: 0; color: inherit; font: inherit; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; opacity: .8; }
+
+  /* ---------- nav ---------- */
+  .nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); }
+  .nav__in { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 64px; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  .nav__brand { font-weight: 700; font-size: 20px; letter-spacing: -.04em; }
+  .nav__links { display: flex; gap: 30px; }
+  .nav__links a, .nav__right a { position: relative; }
+  .nav__links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+  .nav__links a:hover::after { transform: scaleX(1); }
+  .nav__right { display: flex; gap: 22px; justify-content: flex-end; align-items: center; }
+  .nav__cart b { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 99px; background: var(--orange); color: #fff; font-size: 11px; margin-left: 4px; }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 48px 0 0; }
+  .hero__grid { display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 30px; }
+  .hello { font-family: var(--serif); font-style: italic; font-size: clamp(56px, 7vw, 96px); line-height: 1; margin: 22px 0 0; position: relative; display: inline-block; }
+  .hello svg { position: absolute; left: 0; bottom: -12px; width: 78%; height: 14px; }
+  .hello svg path { stroke-dasharray: 400; stroke-dashoffset: 400; transition: stroke-dashoffset 1.2s .3s ease; }
+  .ready .hello svg path { stroke-dashoffset: 0; }
+  .bigname { position: relative; display: inline-flex; align-items: baseline; font-weight: 700; font-size: clamp(130px, 19vw, 300px); letter-spacing: -.065em; line-height: .9; margin: 6px 0 0 -.04em; }
+  .bigname__dot { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--orange); margin-left: .05em; transition: transform .4s cubic-bezier(.2,1.6,.4,1); }
+  .bigname:hover .bigname__dot { transform: translateY(-.25em) scale(1.25); }
+  .psst { position: absolute; top: -.02em; right: .5em; font-family: var(--hand); font-size: 26px; font-weight: 500; letter-spacing: 0; color: #D88E77; transform: rotate(-6deg); white-space: nowrap; }
+  .pot { position: absolute; top: .12em; right: .64em; width: .26em; transition: transform .4s; transform-origin: bottom center; }
+  .bigname:hover .pot { transform: rotate(-12deg) translateY(-4px); }
+
+  .shots { position: relative; height: 420px; }
+  .pola { position: absolute; background: #fff; padding: 10px 10px 46px; box-shadow: 0 18px 40px rgba(30,25,20,.16), 0 2px 6px rgba(30,25,20,.08); width: 210px; transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+  .pola img { width: 100%; aspect-ratio: 4/4.6; object-fit: cover; }
+  .pola figcaption { position: absolute; left: 14px; right: 10px; bottom: 9px; font-family: var(--serif); font-style: italic; font-size: 15px; line-height: 1.15; color: #2b2a27; }
+  .pola:hover { transform: rotate(0) translateY(-8px) scale(1.03) !important; z-index: 5; box-shadow: 0 26px 50px rgba(30,25,20,.22); }
+  .pola--1 { left: 0; top: 60px; transform: rotate(-6deg); width: 225px; }
+  .pola--2 { left: 31%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .pola--3 { right: 0; top: 70px; transform: rotate(-3deg); z-index: 3; }
+  .thats { position: absolute; left: 38%; bottom: 0; font-family: var(--hand); font-size: 26px; display: flex; align-items: end; gap: 6px; }
+  .thats svg { width: 34px; height: 46px; }
+
+  .lede { display: grid; grid-template-columns: 1.15fr 1fr; gap: 30px; align-items: end; padding: 56px 0 40px; }
+  .lede h2 { margin: 0; font-weight: 500; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.45; letter-spacing: -.01em; }
+  .lede h2 i { font-family: var(--serif); font-size: 1.12em; }
+  .lede p { margin: 0; color: var(--muted); max-width: 40ch; font-size: 15px; }
+  .lede p a { color: var(--ink); border-bottom: 1px solid var(--line); }
+  .lede p a:hover { border-color: var(--orange); }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+  .row__list { display: flex; align-items: center; gap: clamp(18px, 3.4vw, 54px); flex-wrap: wrap; }
+  .row__list a { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 36px); display: inline-flex; align-items: center; gap: 12px; }
+  .row__list a:hover { color: var(--orange); }
+  .row__list img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+  .row__sep { color: var(--line); }
+  .tag-now { font: 600 10.5px var(--sans); letter-spacing: .12em; text-transform: uppercase; background: var(--orange); color: #fff; padding: 6px 12px; border-radius: 99px; transform: rotate(-4deg); display: inline-flex; align-items: center; gap: 6px; }
+  .tag-now::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #FFD3C5; }
+
+  /* ---------- scroll statement ---------- */
+  .say { height: 300vh; position: relative; }
+  .say__stick { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: hidden; }
+  .say__line { position: absolute; text-align: center; line-height: .95; letter-spacing: -.04em; padding: 0 16px; }
+  .say__line b { display: block; font-weight: 700; font-size: clamp(56px, 8.4vw, 132px); }
+  .say__line i { display: inline-block; font-family: var(--serif); font-weight: 400; font-size: clamp(64px, 9.6vw, 150px); letter-spacing: -.02em; position: relative; }
+  .say__line i svg { position: absolute; left: 0; bottom: -10px; width: 55%; height: 12px; }
+  .say__vase { position: absolute; width: min(380px, 60vw); aspect-ratio: 4/5; border-radius: 200px 200px 24px 24px; overflow: hidden; box-shadow: 0 40px 80px rgba(30,25,20,.2); }
+  .say__vase img { width: 100%; height: 100%; object-fit: cover; }
+  .say__hint { position: absolute; bottom: 70px; font-size: 20px; color: var(--muted); }
+  .skip { position: absolute; right: 32px; bottom: 26px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid currentColor; }
+
+  /* ---------- dark collection carousel ---------- */
+  .work { background: var(--night); color: #F3EFEA; position: relative; }
+  .work__stick { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+  .work__label { position: absolute; top: 26px; left: 32px; font-family: var(--serif); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #8d8984; }
+  .work__track { display: flex; gap: 6vw; padding: 0 12vw; will-change: transform; perspective: 1400px; }
+  .wc { flex: none; width: min(76vw, 1060px); transform-style: preserve-3d; cursor: pointer; }
+  .wc__head { display: flex; justify-content: space-between; align-items: start; gap: 16px; margin-bottom: 18px; }
+  .wc__head h3 { margin: 0 0 10px; font-weight: 500; font-size: clamp(18px, 1.6vw, 22px); }
+  .wc__tag { display: inline-block; font-size: 12px; padding: 5px 10px; border: 1px solid #3b3837; border-radius: 6px; color: #bdb8b2; }
+  .wc__brand { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #d8d3cc; white-space: nowrap; }
+  .wc__brand b { font-weight: 700; letter-spacing: -.04em; font-size: 18px; color: #fff; }
+  .wc__brand b::after { content: "."; color: var(--orange); }
+  .wc__body { display: grid; grid-template-columns: 1.05fr 1fr; border-radius: 16px; overflow: hidden; background: #EFECE6; color: var(--ink); aspect-ratio: 2/1.08; }
+  .wc__txt { padding: clamp(22px, 3.4vw, 52px); display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+  .wc__txt h4 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.5vw, 54px); line-height: 1.02; letter-spacing: -.01em; }
+  .wc__txt h4 i { color: var(--orange); }
+  .wc__txt p { margin: 0; color: #6c6a64; font-size: clamp(14px, 1.15vw, 16px); max-width: 38ch; }
+  .wc__buy { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .wc__price { font-weight: 700; font-size: 22px; }
+  .wc__price s { font-weight: 400; font-size: 14px; color: #9a968f; margin-left: 6px; }
+  .wc__more { font-size: 13.5px; font-weight: 600; padding: 10px 16px; border-radius: 99px; background: var(--ink); color: #fff; }
+  .wc__img { position: relative; overflow: hidden; }
+  .wc__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+  .wc:hover .wc__img img { transform: scale(1.05); }
+  .wc__count { position: absolute; left: 14px; bottom: 14px; background: rgba(0,0,0,.55); color: #fff; font-size: 12px; padding: 4px 10px; border-radius: 99px; }
+  .work__bar { position: absolute; left: 32px; right: 32px; bottom: 30px; display: flex; align-items: center; gap: 18px; font-size: 12px; color: #8d8984; letter-spacing: .1em; text-transform: uppercase; }
+  .work__bar i { flex: 1; height: 1px; background: #2f2c2b; position: relative; }
+  .work__bar i::after { content: ""; position: absolute; inset: 0; background: var(--orange); transform-origin: left; transform: scaleX(var(--p, 0)); }
+  .work__bar a { color: #e9e4de; border-bottom: 1px solid currentColor; }
+
+  /* ---------- about: browser window ---------- */
+  .about { padding: 110px 0 0; }
+  .about__head { display: flex; align-items: end; gap: 40px; flex-wrap: wrap; margin-bottom: 40px; }
+  .about__head h2 { margin: 12px 0 0; font-family: var(--serif); font-weight: 400; font-size: clamp(56px, 7.4vw, 108px); line-height: .92; letter-spacing: -.02em; }
+  .about__head h2 i { color: var(--orange); position: relative; display: inline-block; }
+  .about__head h2 i svg { position: absolute; left: 0; bottom: -14px; width: 100%; height: 14px; }
+  .about__note { font-family: var(--hand); font-size: 28px; display: flex; align-items: center; gap: 10px; transform: rotate(-4deg); margin-bottom: 40px; }
+  .about__note svg { width: 44px; height: 30px; }
+  .tabs { height: 500vh; position: relative; }
+  .tabs__stick { position: sticky; top: 64px; height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: center; padding: 16px 0 26px; }
+  .win { width: min(1100px, 100%); margin: 0 auto; border-radius: 14px; overflow: hidden; background: var(--bg); box-shadow: 0 40px 90px rgba(30,25,20,.22), 0 0 0 1px rgba(0,0,0,.06); display: flex; flex-direction: column; height: min(680px, calc(100vh - 64px - 80px)); min-height: 460px; }
+  .win__bar { background: #232224; color: #c9c5c0; display: flex; align-items: center; gap: 4px; padding: 8px 10px 0; font-size: 12.5px; overflow-x: auto; scrollbar-width: none; }
+  .win__dots { display: flex; gap: 7px; padding: 0 12px 8px 4px; flex: none; }
+  .win__dots i { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; } .win__dots i:nth-child(2) { background: #febc2e; } .win__dots i:nth-child(3) { background: #28c840; }
+  .tab { flex: none; display: flex; align-items: center; gap: 8px; padding: 8px 16px 10px; border-radius: 9px 9px 0 0; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; white-space: nowrap; position: relative; }
+  .tab--ghost { opacity: .55; cursor: default; max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
+  .tab--ghost::after { content: "×"; margin-left: 6px; opacity: .6; }
+  .tab.is-on { background: #3a383b; color: #fff; }
+  .tab.is-on::before { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 2px; background: var(--orange); }
+  .tab__pill { flex: none; background: var(--orange); color: #fff; font-weight: 700; font-size: 11px; padding: 3px 9px; border-radius: 6px; margin: 0 6px 6px; letter-spacing: -.02em; }
+  .win__url { background: #3a383b; display: flex; align-items: center; gap: 14px; padding: 7px 12px; color: #a9a5a0; font-size: 13px; }
+  .win__url span { flex: 1; background: #232224; border-radius: 99px; padding: 6px 14px; color: #d4d0cb; }
+  .win__url span em { font-style: normal; color: #8f8b86; }
+  .win__body { flex: 1; position: relative; overflow: hidden; }
+  .pane { position: absolute; inset: 0; padding: clamp(24px, 4vw, 56px); display: grid; align-items: center; opacity: 0; visibility: hidden; transform: translateY(20px); transition: opacity .45s, transform .45s, visibility .45s; overflow: auto; }
+  .pane.is-on { opacity: 1; visibility: visible; transform: none; }
+  .next { position: absolute; right: 18px; bottom: 18px; z-index: 3; display: flex; align-items: center; gap: 14px; background: #1d1c1e; color: #fff; padding: 10px 16px; border-radius: 12px; font-size: 13.5px; border: 0; cursor: pointer; }
+  .next i { font-family: var(--hand); font-style: normal; font-size: 18px; color: #c9c5c0; padding-right: 14px; border-right: 1px solid #444; }
+  .dashes { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+  .dashes i { width: 28px; height: 2px; background: var(--line); transition: background .3s; } .dashes i.is-on { background: var(--orange); }
+
+  /* pane: about */
+  .p-about { grid-template-columns: .8fr 1.2fr; gap: clamp(26px, 4vw, 60px); }
+  .p-about .pola { position: relative; width: 100%; max-width: 330px; transform: rotate(-3deg); padding-bottom: 50px; }
+  .p-about .pola figcaption { font-family: var(--hand); font-style: normal; color: var(--orange); text-align: center; font-size: 22px; transform: rotate(-2deg); }
+  .hi { font-family: var(--hand); font-size: 20px; color: #6e6b65; display: flex; align-items: center; gap: 4px; }
+  .who { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 12px; margin: 0; }
+  .who b { font-size: clamp(52px, 6vw, 88px); letter-spacing: -.055em; line-height: 1; }
+  .who span { font-size: 26px; font-weight: 500; letter-spacing: -.03em; }
+  .who span::after { content: "."; color: var(--orange); }
+  .who em { font-family: var(--hand); font-style: normal; font-size: 18px; color: #6e6b65; transform: rotate(-3deg); }
+  .now { font-size: 13.5px; color: var(--muted); margin: 6px 0 18px; }
+  .now b { color: var(--ink); }
+  .bio { margin: 0 0 18px; font-size: clamp(15px, 1.4vw, 18.5px); line-height: 1.65; color: #6e6b65; }
+  .bio b { color: var(--ink); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips span { font-family: var(--hand); font-size: 19px; background: #fff; border: 1px solid var(--line); padding: 3px 12px; border-radius: 4px; display: inline-flex; gap: 8px; align-items: center; }
+  .chips span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--green)); }
+  .foot-mini { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .foot-mini a { color: var(--ink); }
+
+  /* pane: list (collections / workshop) */
+  .p-split { grid-template-columns: 1fr 1.05fr; gap: clamp(24px, 4vw, 60px); }
+  .p-title { margin: 8px 0 22px; font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 4.2vw, 60px); line-height: .98; letter-spacing: -.01em; }
+  .p-title i { color: var(--orange); display: block; }
+  .steps { border-top: 1px solid var(--line); }
+  .step { display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 12px; padding: 14px 10px; border-bottom: 1px solid var(--line); cursor: pointer; transition: padding .3s, color .3s; position: relative; color: #7a776f; }
+  .step b { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 2vw, 30px); color: inherit; }
+  .step small { font-size: 13px; }
+  .step em { font-family: var(--hand); font-style: normal; color: var(--orange); font-size: 19px; }
+  .step.is-on { color: var(--ink); padding-left: 16px; }
+  .step.is-on::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--orange); }
+  .green { font-family: var(--hand); font-size: 21px; color: var(--green); margin: 18px 0 0; }
+  .stack { position: relative; height: 100%; min-height: 340px; }
+  .stack .pola { width: 46%; padding-bottom: 12px; }
+  .stack .pola img { aspect-ratio: 4/3.4; }
+  .stack .pola:nth-child(1) { left: 0; top: 6%; transform: rotate(-4deg); width: 54%; }
+  .stack .pola:nth-child(2) { right: 0; top: 0; transform: rotate(3deg); }
+  .stack .pola:nth-child(3) { left: 14%; bottom: 0; transform: rotate(2deg); z-index: 2; }
+  .stack .pola:nth-child(4) { right: 2%; bottom: 4%; transform: rotate(-2deg); }
+  .stamp { position: absolute; left: 47%; top: 44%; z-index: 4; width: 96px; height: 96px; border-radius: 50%; border: 2px solid var(--orange); color: var(--orange); display: grid; place-items: center; text-align: center; transform: rotate(-14deg); background: rgba(241,238,232,.6); backdrop-filter: blur(2px); }
+  .stamp b { font-size: 28px; line-height: 1; letter-spacing: -.03em; display: block; }
+  .stamp span { font-family: var(--hand); font-size: 16px; }
+  .log { border-top: 1px solid var(--line); }
+  .log__row { display: grid; grid-template-columns: 40px 52px 1fr 1fr auto; gap: 14px; align-items: center; padding: 14px 4px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .2s; }
+  .log__row:hover { background: rgba(0,0,0,.025); }
+  .log__row > small { color: var(--muted); font-size: 12.5px; }
+  .log__row img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
+  .log__row b { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 34px); line-height: 1; }
+  .log__row span { color: var(--muted); font-size: 14px; }
+  .badge { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 5px 11px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+  .badge--on { background: var(--orange); border-color: var(--orange); color: #fff; }
+  .cta-line { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 22px; }
+  .cta-line .hand { font-size: 22px; color: var(--orange); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 12px; background: var(--ink); color: #fff; font-weight: 500; font-size: 14.5px; border: 0; cursor: pointer; transition: transform .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn--o { background: var(--orange); }
+  .btn--line { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .perks { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .perks div { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; color: #5f5d57; }
+  .perks div b { color: var(--ink); display: block; font-size: 16px; }
+  .perks svg { width: 26px; height: 26px; color: var(--orange); }
+
+  /* ---------- contact ---------- */
+  .contact { margin-top: 110px; background: var(--orange) var(--grain); color: #FFF4EF; position: relative; overflow: hidden; padding: 90px 0 0; }
+  .contact__grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: end; }
+  .contact h2 { margin: 0; line-height: .9; letter-spacing: -.05em; }
+  .contact h2 b { display: block; font-size: clamp(64px, 9vw, 140px); }
+  .contact h2 i { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: clamp(72px, 10vw, 160px); }
+  .contact p { margin: 0 0 22px; font-size: 17px; max-width: 40ch; color: #FFE3D9; }
+  .contact .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .contact .btn { background: #fff; color: var(--ink); }
+  .contact .btn--line { background: transparent; color: #fff; }
+  .contact__meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 80px; padding: 20px 0; border-top: 1px solid rgba(255,255,255,.3); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; }
+  .contact__huge { font-weight: 700; font-size: 33vw; letter-spacing: -.07em; line-height: .72; margin: 0 0 -3.6vw -1vw; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.55); white-space: nowrap; user-select: none; }
+  .contact__huge span { display: inline-block; width: .17em; height: .17em; border-radius: 50%; background: var(--night); margin-left: .04em; -webkit-text-stroke: 0; }
+
+  /* ---------- scroll meter ---------- */
+  .meter { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 40; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; mix-blend-mode: difference; filter: invert(1) grayscale(1); }
+  .meter__rail { width: 1px; height: 160px; background: rgba(0,0,0,.25); position: relative; }
+  .meter__rail i { position: absolute; left: -1px; top: 0; width: 3px; background: #000; height: calc(var(--p, 0) * 100%); }
+  .meter__brush { position: absolute; left: 50%; top: calc(var(--p, 0) * 100%); width: 14px; transform: translate(-30%, -100%) rotate(18deg); }
+
+  /* ---------- reveal ---------- */
+  .rise { opacity: 0; transform: translateY(26px); transition: opacity .8s, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .rise.in { opacity: 1; transform: none; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px) {
+    .hero__grid, .lede { grid-template-columns: 1fr; }
+    .shots { height: 330px; max-width: 560px; }
+    .pola { width: 170px; } .pola--1 { width: 180px; }
+    .p-about, .p-split { grid-template-columns: 1fr; }
+    .stack { min-height: 300px; }
+  }
+  @media (max-width: 760px) {
+    .wrap { width: calc(100% - 32px); }
+    .nav__links { display: none; }
+    .nav__in { grid-template-columns: 1fr auto; }
+    .nav__right .hide-sm { display: none; }
+    .hero { padding-top: 26px; }
+    .bigname { font-size: 33vw; }
+    .psst { font-size: 18px; right: .2em; top: -.15em; }
+    .shots { height: 270px; }
+    .pola { width: 128px; padding: 7px 7px 36px; } .pola--1 { width: 136px; top: 40px; } .pola--3 { top: 50px; }
+    .pola figcaption { font-size: 12px; left: 9px; bottom: 6px; }
+    .thats { font-size: 20px; left: 30%; }
+    .lede { padding: 36px 0 28px; }
+    .row__list { gap: 14px; } .row__list a { font-size: 24px; } .row__sep { display: none; }
+    .say { height: 240vh; }
+    .skip { right: 16px; }
+    /* collection: native swipe instead of scroll-jacking */
+    .work { height: auto !important; padding: 80px 0 70px; }
+    .work__stick { position: static; height: auto; }
+    .work__label { left: 16px; }
+    .work__track { transform: none !important; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 16px 6px; gap: 16px; scrollbar-width: none; }
+    .wc { width: 86vw; scroll-snap-align: center; transform: none !important; opacity: 1 !important; }
+    .wc__body { grid-template-columns: 1fr; aspect-ratio: auto; }
+    .wc__img { order: -1; aspect-ratio: 4/3.6; }
+    .wc__brand span { display: none; }
+    .work__bar { position: static; margin: 22px 16px 0; }
+    .about { padding-top: 80px; }
+    .about__note { font-size: 22px; margin-bottom: 0; }
+    .tabs { height: auto !important; }
+    .tabs__stick { position: static; height: auto; padding: 0; }
+    .win { height: 640px; }
+    .tab--ghost { display: none; }
+    .pane { padding: 22px 18px 80px; align-items: start; }
+    .p-about .pola { max-width: 200px; margin: 6px auto 0; }
+    .log__row { grid-template-columns: 30px 40px 1fr auto; } .log__row > span { display: none; }
+    .log__row img { width: 38px; height: 38px; }
+    .stack { min-height: 250px; }
+    .stamp { width: 74px; height: 74px; } .stamp b { font-size: 20px; }
+    .contact { padding-top: 60px; }
+    .contact__grid { grid-template-columns: 1fr; }
+    .contact__meta { margin-top: 50px; }
+    .meter { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .intro { display: none; }
+    .rise { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- intro: the name is drawn on construction lines, then fills in -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro__c intro__c--tl">Nana Ceramics<br>від глини до полиці</div>
+  <div class="intro__c intro__c--tr">Гість № 01<br>раді, що зазирнули</div>
+  <div class="intro__c intro__c--br">Кераміка ручної роботи · Україна</div>
+  <svg viewBox="0 0 600 260" aria-hidden="true">
+    <defs><clipPath id="fillClip"><rect id="fillRect" x="60" y="0" width="0" height="260"/></clipPath></defs>
+    <path class="guide" d="M20 108H560M0 172H580M50 218H420"/>
+    <path class="guide" d="M92 40V236M262 50V240M420 46V232M60 236L330 30"/>
+    <text class="guide-l" x="20" y="100">ВИСОТА x</text>
+    <text class="guide-l" x="0" y="164">БАЗОВА ЛІНІЯ</text>
+    <text class="guide-l" x="50" y="210">ВИНОС</text>
+    <text class="word word--line" x="70" y="172">nana</text>
+    <text class="word word--fill" x="70" y="172" clip-path="url(#fillClip)">nana</text>
+    <circle class="dot" cx="520" cy="156" r="17"/>
+  </svg>
+  <div class="intro__pct" id="pct">000%</div>
+  <button class="intro__skip" id="skipIntro" aria-hidden="false">Пропустити</button>
+</div>
+
+<nav class="nav">
+  <div class="wrap nav__in">
+    <a class="nav__brand" href="#top">nana<span class="o">.</span></a>
+    <div class="nav__links"><a href="#collection">каталог</a><a href="#about">про нас</a><a href="#about" data-goto-tab="3">опт</a><a href="#about" data-goto-tab="4">доставка</a></div>
+    <div class="nav__right">
+      <a href="#" class="nav__cart" data-cart-open>кошик<b data-cart-count>0</b></a>
+      <a href="#contact" class="hide-sm">написати ↗</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <!-- ---------- hero ---------- -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow">Кераміка ручної роботи · Зроблено в Україні</p>
+          <p class="hello">привіт, ми<svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M2 8c20-8 30 8 50 0s30-8 50 0 30 8 50 0 30-8 50 0 30 8 46 0" fill="none" stroke="#E0522F" stroke-width="2.4" stroke-linecap="round"/></svg></p>
+          <h1 class="bigname" aria-label="Nana Ceramics">nana<span class="bigname__dot"></span>
+            <span class="psst" aria-hidden="true">псст. наведи на мене</span>
+            <svg class="pot" viewBox="0 0 60 70" aria-hidden="true"><path d="M14 22h32l-4 40c0 4-3 6-6 6H24c-3 0-6-2-6-6z" fill="#E7A88E" stroke="#B9583A" stroke-width="2"/><path d="M10 16h40v8H10z" fill="#D9805F" stroke="#B9583A" stroke-width="2"/><path d="M30 16c-2-8 2-12 8-14-1 6-4 10-8 14zm0 0c-4-5-10-6-14-4 4 4 9 5 14 4z" fill="#6E9E6A"/><circle cx="25" cy="40" r="1.6" fill="#7a3a26"/><circle cx="36" cy="40" r="1.6" fill="#7a3a26"/><path d="M27 47q3.5 3 7 0" stroke="#7a3a26" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+          </h1>
+        </div>
+        <div class="shots">
+          <figure class="pola pola--1" data-product="wave-sand" tabindex="0" style="margin:0"><img src="../assets/img/wave-sand-mood.jpg" alt="Ваза «Хвиля» пісочна"><figcaption>зазвичай думаємо про форму.</figcaption></figure>
+          <figure class="pola pola--2" style="margin:0"><img src="../assets/img/workshop.jpg" alt="Майстриня на виробництві"><figcaption>коріння: Слов'янськ.</figcaption></figure>
+          <figure class="pola pola--3" data-product="muse" tabindex="0" style="margin:0"><img src="../assets/img/muse-white.jpg" alt="Ваза-бюст «Муза»"><figcaption>найщасливіші, коли пахне глиною.</figcaption></figure>
+          <div class="thats"><svg viewBox="0 0 34 46" fill="none" stroke="#23251F" stroke-width="1.6" stroke-linecap="round"><path d="M26 44C8 40 6 22 14 4"/><path d="M8 10l6-7 5 8"/></svg>це ми</div>
+        </div>
+      </div>
+
+      <div class="lede">
+        <h2>Ми робимо вази.<br>І робимо їх <i>живими</i>.</h2>
+        <p><a href="#collection">Вази</a>, <a href="#about" data-goto-tab="2">кашпо</a> і новорічні <a href="#collection">сувеніри</a> — для дому, на подарунок і для магазинів.</p>
+      </div>
+
+      <div class="row">
+        <p class="eyebrow">Колекції</p>
+        <div class="row__list">
+          <a href="#" data-product="wave-sand"><img src="../assets/img/vase-wave.jpg" alt="">Хвиля</a><span class="tag-now">новинка</span>
+          <span class="row__sep">/</span>
+          <a href="#" data-product="muse"><img src="../assets/img/vase-busts.jpg" alt="">Музи</a>
+          <span class="row__sep">/</span>
+          <a href="#" data-product="xmas-candy"><img src="../assets/img/vase-candy.jpg" alt="">Новорічна</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- scroll statement ---------- -->
+  <section class="say" id="say">
+    <div class="say__stick">
+      <div class="say__line" id="say1"><b>ласкаво просимо</b><i>до майстерні.<svg viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2 7c60-6 140-6 296-2" fill="none" stroke="#E0522F" stroke-width="2.6" stroke-linecap="round"/></svg></i></div>
+      <div class="say__line" id="say2"><b>але спершу —<br>погляньте на неї.</b></div>
+      <div class="say__vase" id="sayVase"><img src="../assets/img/vase-wave.jpg" alt="Ваза «Хвиля»"></div>
+      <p class="say__hint" id="sayHint">гортайте ↓</p>
+      <a class="skip" href="#collection">до каталогу →</a>
+    </div>
+  </section>
+
+  <!-- ---------- dark horizontal collection ---------- -->
+  <section class="work" id="collection">
+    <div class="work__stick">
+      <p class="work__label">01 / Колекція</p>
+      <div class="work__track" id="track"></div>
+      <div class="work__bar"><span id="wcNum">01 / 08</span><i id="wcBar"></i><a href="#about">пропустити →</a></div>
+    </div>
+  </section>
+
+  <!-- ---------- about: browser window with tabs ---------- -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about__head rise">
+        <div>
+          <p class="eyebrow">02 / Про нас</p>
+          <h2>трохи більше<br><i>про нас.<svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M2 8c20-8 30 8 50 0s30-8 50 0 30 8 50 0 30-8 50 0 30 8 46 0" fill="none" stroke="#E0522F" stroke-width="2.4" stroke-linecap="round"/></svg></i></h2>
+        </div>
+        <p class="about__note"><svg viewBox="0 0 44 30" fill="none" stroke="#23251F" stroke-width="1.6" stroke-linecap="round"><path d="M42 6C26 0 8 6 4 26"/><path d="M0 18l4 9 8-5"/></svg>так, у нас теж забагато вкладок</p>
+      </div>
+    </div>
+    <div class="tabs" id="tabs">
+      <div class="tabs__stick">
+        <div class="wrap">
+          <div class="win" id="win">
+            <div class="win__bar" role="tablist">
+              <div class="win__dots"><i></i><i></i><i></i></div>
+              <span class="tab tab--ghost">Instagram</span><span class="tab tab--ghost">Нова пошта</span><span class="tab tab--ghost">Замовлення</span>
+              <span class="tab__pill">nana.</span>
+              <button class="tab is-on" data-tab="0" role="tab">🏺 про нас</button>
+              <button class="tab" data-tab="1" role="tab">🔥 майстерня</button>
+              <button class="tab" data-tab="2" role="tab">📂 колекції</button>
+              <button class="tab" data-tab="3" role="tab">📦 опт</button>
+              <button class="tab" data-tab="4" role="tab">🚚 доставка</button>
+            </div>
+            <div class="win__url">← → ↻ <span>🔒 nanaceramics.ua/ <em id="urlPath">about</em></span></div>
+            <div class="win__body">
+
+              <div class="pane p-about is-on" data-pane="0">
+                <figure class="pola" style="margin:0"><img src="../assets/img/workshop.jpg" alt="Майстриня Nana Ceramics"><figcaption>так, це ми</figcaption></figure>
+                <div>
+                  <p class="hi">привіт, ми <svg width="22" height="12" viewBox="0 0 22 12" fill="none" stroke="#E0522F" stroke-width="1.6" stroke-linecap="round"><path d="M1 8c6-6 12-6 19 0M16 3l4 5-6 2"/></svg></p>
+                  <p class="who"><b>Nana</b><span>ceramics</span><em>якщо офіційно</em></p>
+                  <p class="now">зараз ліпимо: <b>новорічну колекцію</b></p>
+                  <p class="bio"><b>український виробник</b> керамічних горщиків, ваз і сувенірів. від гіпсової форми до глазурі — <b>усе руками</b>. через війну ми <b>перевезли виробництво зі Слов'янська</b>: зібрали обладнання, команду й форми — і запустили цех заново. робимо <b>одну вазу для вас</b> і <b>сотні горщиків</b> для магазинів.</p>
+                  <div class="chips"><span>ручна формовка</span><span style="--c:#E0522F">своя глазур</span><span style="--c:#4A6FD1">по всій Україні</span></div>
+                  <p class="foot-mini">виробництво — Україна · <a href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">@nanaceramics1</a></p>
+                </div>
+              </div>
+
+              <div class="pane p-split" data-pane="1">
+                <div>
+                  <p class="eyebrow">Майстерня</p>
+                  <h3 class="p-title">від форми<i>до полиці.</i></h3>
+                  <div class="steps" id="steps">
+                    <div class="step is-on" data-step="0"><small>01</small><b>Форма</b><em>гіпс</em></div>
+                    <div class="step" data-step="1"><small>02</small><b>Лиття і сушка</b><em>терпіння</em></div>
+                    <div class="step" data-step="2"><small>03</small><b>Глазур</b><em>вручну</em></div>
+                    <div class="step" data-step="3"><small>04</small><b>Випал</b><em>піч</em></div>
+                  </div>
+                  <p class="green">кожна ваза трохи інша — і це нормально.</p>
+                </div>
+                <div class="stack">
+                  <figure class="pola" style="margin:0"><img src="../assets/img/workshop.jpg" alt="Робота з формою"></figure>
+                  <figure class="pola" style="margin:0"><img src="../assets/img/factory.jpg" alt="Цех"></figure>
+                  <figure class="pola" style="margin:0"><img src="../assets/img/wave-sand-detail.jpg" alt="Глазур крупним планом"></figure>
+                  <figure class="pola" style="margin:0"><img src="../assets/img/candle-detail.jpg" alt="Готовий виріб"></figure>
+                  <div class="stamp"><div><b id="stampN">01</b><span id="stampT">форма</span></div></div>
+                </div>
+              </div>
+
+              <div class="pane" data-pane="2">
+                <div>
+                  <p class="eyebrow">Колекції</p>
+                  <h3 class="p-title">що ми <i>ліпимо зараз.</i></h3>
+                  <div class="log" id="log"></div>
+                  <div class="cta-line"><span class="hand">усе в наявності — тут →</span><a class="btn" href="#collection">відкрити каталог ↗</a></div>
+                </div>
+              </div>
+
+              <div class="pane p-split" data-pane="3">
+                <div>
+                  <p class="eyebrow">Опт</p>
+                  <h3 class="p-title">для магазинів<i>і шоурумів.</i></h3>
+                  <p class="bio" style="font-size:16px">Квіткові магазини, концепт-стори, декоратори — робимо партії горщиків і ваз під сезон. Можемо підібрати кольори під ваш асортимент.</p>
+                  <div class="cta-line"><a class="btn btn--o" href="https://t.me/nanaceramics" target="_blank" rel="noopener">Написати щодо опту ↗</a><span class="hand">відповідаємо швидко</span></div>
+                </div>
+                <div class="perks">
+                  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16v13H4zM8 7V4h8v3"/></svg><span><b>Партії під сезон</b>горщики, кашпо, вази й новорічні сувеніри</span></div>
+                  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16"/></svg><span><b>Кольори на вибір</b>глазур під ваш інтер'єр чи вітрину</span></div>
+                  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h13l-3-3m3 3-3 3"/><path d="M17 6h4v12h-4"/></svg><span><b>Відправка по Україні</b>надійне пакування, Нова пошта або вантажна доставка</span></div>
+                </div>
+              </div>
+
+              <div class="pane p-split" data-pane="4">
+                <div>
+                  <p class="eyebrow">Доставка та оплата</p>
+                  <h3 class="p-title">кераміка доїде<i>цілою.</i></h3>
+                  <p class="bio" style="font-size:16px">Оформіть замовлення в кошику — ми напишемо в Telegram, підтвердимо наявність і суму доставки.</p>
+                  <div class="cta-line"><button class="btn" data-cart-open>відкрити кошик</button></div>
+                </div>
+                <div class="perks">
+                  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h12v10H3zM15 10h4l2 3v4h-6"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span><b>Нова пошта</b>відділення, поштомат або кур'єр</span></div>
+                  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="M4 7l8 4 8-4M12 11v10"/></svg><span><b>Пакуємо в кілька шарів</b>кожну вазу окремо</span></div>
+                  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg><span><b>Оплата після підтвердження</b>на карту або накладений платіж</span></div>
+                </div>
+              </div>
+
+              <button class="next" id="next"><i>гортайте далі</i><span>далі: <b id="nextName">майстерня</b> ↓</span></button>
+            </div>
+          </div>
+          <div class="dashes" id="dashes"><i class="is-on"></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- contact ---------- -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact__grid">
+        <h2 class="rise"><b>напишіть</b><i>нам.</i></h2>
+        <div class="rise">
+          <p>Питання про вазу, подарунок чи оптову партію — відповідаємо в Telegram та Instagram.</p>
+          <div class="btns">
+            <a class="btn" href="https://t.me/nanaceramics" target="_blank" rel="noopener">Telegram ↗</a>
+            <a class="btn btn--line" href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">Instagram ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact__meta"><span>Nana Ceramics © 2026</span><span>від глини до полиці</span><span>Зроблено в Україні</span></div>
+    </div>
+    <div class="contact__huge" aria-hidden="true">nana<span></span></div>
+  </section>
+</main>
+
+<div class="meter" aria-hidden="true"><div class="meter__rail" id="meter"><i></i><svg class="meter__brush" viewBox="0 0 14 40"><path d="M5 0h4v24H5z" fill="#c9a27a"/><path d="M4 24h6l1 6-4 10-4-10z" fill="#E0522F"/></svg></div><span id="meterPct">0%</span></div>
+
+<script src="../assets/products.js"></script>
+<script>
+(() => {
+  const P = NANA.products;
+  const img = (f) => '../assets/img/' + f;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile = () => innerWidth <= 760;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+  /* ---------- intro ---------- */
+  const intro = document.getElementById('intro');
+  const finish = () => { if (intro.classList.contains('is-done')) return; intro.classList.add('is-done'); document.body.classList.add('ready'); setTimeout(() => intro.classList.add('is-gone'), 950); };
+  let seen = false; try { seen = !!sessionStorage.getItem('nana-intro'); } catch {}
+  if (reduce || seen || window.top !== window) { intro.classList.add('is-gone'); document.body.classList.add('ready'); }
+  else {
+    try { sessionStorage.setItem('nana-intro', '1'); } catch {}
+    const rect = document.getElementById('fillRect'), pct = document.getElementById('pct');
+    const t0 = performance.now(), dur = 2600;
+    const tick = (t) => {
+      const p = clamp((t - t0) / dur), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      pct.textContent = String(Math.round(e * 100)).padStart(3, '0') + '%';
+      rect.setAttribute('width', clamp((e - .45) / .45) * 470);
+      if (e > .93) intro.classList.add('is-full');
+      if (p < 1) requestAnimationFrame(tick); else setTimeout(finish, 450);
+    };
+    requestAnimationFrame(tick);
+    document.getElementById('skipIntro').onclick = finish;
+  }
+
+  /* ---------- collection cards ---------- */
+  const lines = {
+    'wave-sand': ['Три м\'які хвилі —', 'одна спокійна форма.'],
+    'muse': ['Скульптура,', 'яка тримає квіти.'],
+    'wave-bronze': ['Улюблена «Хвиля»', 'у бронзі.'],
+    'xmas-candy': ['Свято, яке', 'стоїть на полиці.'],
+    'xmas-tree': ['Ялинка, що', 'не обсипається.'],
+    'xmas-snowman': ['Сніговик, який', 'не тане.'],
+    'xmas-candle': ['Тепле світло', 'зимових вечорів.'],
+    'pot-handmade': ['Кашпо, сформоване', 'руками.'],
+  };
+  const order = Object.keys(lines).filter((id) => P[id]);
+  const track = document.getElementById('track');
+  track.innerHTML = order.map((id, i) => {
+    const p = P[id], [a, b] = lines[id], n = (p.gallery || [p.img]).length;
+    const from = p.options?.values.some((v) => v.price && v.price !== p.price) ? 'від ' : '';
+    return `<article class="wc" data-product="${id}" tabindex="0" aria-label="${p.title} — відкрити">
+      <div class="wc__head"><div><h3>${p.title}</h3><span class="wc__tag">${p.collection}</span></div>
+        <div class="wc__brand"><b>nana</b><span>× ${String(i + 1).padStart(2, '0')}</span></div></div>
+      <div class="wc__body">
+        <div class="wc__txt"><h4>${a}<br><i>${b}</i></h4><p>${p.short}</p>
+          <div class="wc__buy"><span class="wc__price">${from}${p.price.toLocaleString('uk-UA')} грн${p.oldPrice ? `<s>${p.oldPrice} грн</s>` : ''}</span><span class="wc__more">Детальніше →</span></div></div>
+        <div class="wc__img"><img src="${img(p.img)}" alt="${p.title}" loading="lazy">${n > 1 ? `<span class="wc__count">${n} фото</span>` : ''}</div>
+      </div></article>`;
+  }).join('');
+  document.getElementById('wcNum').textContent = `01 / ${String(order.length).padStart(2, '0')}`;
+
+  /* ---------- collections log (tab 3) ---------- */
+  const logRows = [['wave-sand', 'Хвиля', 'вази для дому', 'нове', true], ['muse', 'Музи', 'вази-бюсти', 'хіт', false], ['xmas-candy', 'Новорічна', 'вази й сувеніри', 'сезон', true], ['pot-handmade', 'Кашпо', 'горщики для квітів', 'опт', false]];
+  document.getElementById('log').innerHTML = logRows.filter((r) => P[r[0]]).map(([id, name, sub, badge, on], i) =>
+    `<div class="log__row" data-product="${id}" tabindex="0"><small>0${i + 1}</small><img src="${img(P[id].img)}" alt=""><b>${name}</b><span>${sub}</span><em class="badge ${on ? 'badge--on' : ''}">${badge}</em></div>`).join('');
+
+  /* ---------- workshop steps ---------- */
+  const stepNames = ['форма', 'сушка', 'глазур', 'випал'];
+  const stack = document.querySelectorAll('.stack .pola');
+  const setStep = (i) => {
+    document.querySelectorAll('.step').forEach((s, k) => s.classList.toggle('is-on', k === i));
+    document.getElementById('stampN').textContent = '0' + (i + 1);
+    document.getElementById('stampT').textContent = stepNames[i];
+    stack.forEach((el, k) => { el.style.zIndex = k === i ? 3 : ''; el.style.filter = k === i ? '' : 'saturate(.75)'; });
+  };
+  document.querySelectorAll('.step').forEach((s) => { s.addEventListener('mouseenter', () => setStep(+s.dataset.step)); s.addEventListener('click', () => setStep(+s.dataset.step)); });
+
+  /* ---------- browser tabs ---------- */
+  const names = ['про нас', 'майстерня', 'колекції', 'опт', 'доставка'], paths = ['about', 'workshop', 'collections', 'wholesale', 'delivery'];
+  const tabsSec = document.getElementById('tabs');
+  let cur = 0;
+  const setTab = (i) => {
+    cur = i;
+    document.querySelectorAll('.tab[data-tab]').forEach((t) => { const on = +t.dataset.tab === i; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', on); });
+    document.querySelectorAll('.pane').forEach((p) => p.classList.toggle('is-on', +p.dataset.pane === i));
+    document.querySelectorAll('#dashes i').forEach((d, k) => d.classList.toggle('is-on', k === i));
+    document.getElementById('urlPath').textContent = paths[i];
+    document.getElementById('next').querySelector('span').innerHTML = i === names.length - 1 ? 'далі: <b>контакти</b> ↓' : `далі: <b>${names[i + 1]}</b> ↓`;
+  };
+  const goTab = (i) => {
+    if (mobile()) { setTab(i); document.getElementById('win').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    const top = tabsSec.offsetTop, span = tabsSec.offsetHeight - innerHeight;
+    scrollTo({ top: top + span * (i + .5) / names.length, behavior: 'smooth' });
+  };
+  document.querySelectorAll('.tab[data-tab]').forEach((t) => t.addEventListener('click', () => goTab(+t.dataset.tab)));
+  document.getElementById('next').addEventListener('click', () => cur === names.length - 1 ? document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) : goTab(cur + 1));
+  document.querySelectorAll('[data-goto-tab]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); goTab(+a.dataset.gotoTab); }));
+
+  /* ---------- scroll-driven bits ---------- */
+  const say = document.getElementById('say'), s1 = document.getElementById('say1'), s2 = document.getElementById('say2'), vase = document.getElementById('sayVase'), hint = document.getElementById('sayHint');
+  const work = document.getElementById('collection'), cards = [...track.children], bar = document.getElementById('wcBar'), num = document.getElementById('wcNum');
+  const meter = document.getElementById('meter'), meterPct = document.getElementById('meterPct');
+  const sizeWork = () => { work.style.height = mobile() ? '' : (track.scrollWidth - innerWidth + innerHeight) + 'px'; tabsSec.style.height = mobile() ? '' : ''; };
+  const style = (el, o, y, blur, s = 1) => { el.style.opacity = o; el.style.transform = `translateY(${y}px) scale(${s})`; el.style.filter = blur ? `blur(${blur}px)` : ''; };
+
+  const onScroll = () => {
+    const y = scrollY, vh = innerHeight;
+    // statement
+    const r = say.getBoundingClientRect(), p = clamp(-r.top / (say.offsetHeight - vh));
+    const a = clamp(p / .22), b = clamp((p - .3) / .2), c = clamp((p - .55) / .3);
+    style(s1, Math.min(.15 + a * .85, 1 - b), -b * 60, (1 - a) * 8 + b * 6);
+    style(s2, b * (1 - c), 40 - b * 40 - c * 80, (1 - b) * 8);
+    s2.querySelector('b').style.fontSize = '';
+    vase.style.opacity = c; vase.style.transform = `translateY(${(1 - c) * 120}px) scale(${.55 + c * .45}) rotate(${(1 - c) * -8}deg)`;
+    hint.style.opacity = 1 - a;
+    // horizontal collection
+    if (!mobile()) {
+      const wr = work.getBoundingClientRect(), wp = clamp(-wr.top / (work.offsetHeight - vh));
+      const max = track.scrollWidth - innerWidth;
+      track.style.transform = `translateX(${-wp * max}px)`;
+      cards.forEach((card) => { const cr = card.getBoundingClientRect(), d = ((cr.left + cr.width / 2) - innerWidth / 2) / innerWidth;
+        card.style.transform = `rotateY(${clamp(d, -1, 1) * -18}deg) scale(${1 - Math.min(Math.abs(d), 1) * .12})`; card.style.opacity = 1 - Math.min(Math.abs(d), 1) * .45; });
+      bar.style.setProperty('--p', wp);
+      num.textContent = `${String(Math.round(wp * (cards.length - 1)) + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+      // tabs follow the scroll
+      const tr = tabsSec.getBoundingClientRect(), tp = clamp(-tr.top / (tabsSec.offsetHeight - vh));
+      if (tr.top < vh && tr.bottom > 0) { const i = Math.min(names.length - 1, Math.floor(tp * names.length)); if (i !== cur) setTab(i); }
+    }
+    // meter
+    const mp = clamp(y / (document.documentElement.scrollHeight - vh));
+    meter.style.setProperty('--p', mp); meterPct.textContent = Math.round(mp * 100) + '%';
+  };
+  if (mobile()) { /* mobile: horizontal swipe for collection */
+    track.addEventListener('scroll', () => { const i = Math.round(track.scrollLeft / (cards[0].offsetWidth + 16)); bar.style.setProperty('--p', i / (cards.length - 1)); num.textContent = `${String(i + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`; }, { passive: true });
+  }
+  sizeWork(); onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', () => { sizeWork(); onScroll(); });
+  addEventListener('load', () => { sizeWork(); onScroll(); });
+
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.rise').forEach((el) => io.observe(el));
+})();
+</script>
+<script src="../assets/cart.js"></script>
+<script src="../assets/product-modal.js"></script>
+</body>
+</html>

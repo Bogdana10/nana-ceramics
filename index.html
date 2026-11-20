@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nana Ceramics — варіанти дизайну</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Manrope:wght@400;500;600;700&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/logo.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 400 15px/1.55 "Manrope", system-ui, sans-serif; color: #1f1c1a; background: #F5F2EC; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(1120px, 100% - 32px); margin: 0 auto; padding: 48px 0 60px; }
+  header { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+  header p { margin: 0; color: #6b655f; max-width: 46ch; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .opt { background: #fff; border: 1px solid #e6e1d9; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s; }
+  .opt:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(40,30,20,.08); }
+  .opt__preview { aspect-ratio: 4/3; border-bottom: 1px solid #e6e1d9; position: relative; overflow: hidden; }
+  .opt__preview iframe { position: absolute; top: 0; left: 0; width: 400%; height: 400%; transform: scale(.25); transform-origin: 0 0; border: 0; pointer-events: none; }
+  .opt__body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .opt__num { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #9C4A26; font-weight: 600; }
+  .opt h2 { margin: 0; font-size: 20px; }
+  .opt p { margin: 0; color: #6b655f; font-size: 14px; flex: 1; }
+  .opt__go { margin-top: 10px; font-weight: 600; font-size: 14px; }
+  @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="nana-logo" style="font-size:18px"></span>
+    <p>Чотири напрями дизайну сайту. Відкрийте кожен, погортайте й оберіть той, що найближчий — далі доопрацюємо його до повного сайту.</p>
+  </header>
+  <div class="grid">
+    <a class="opt" href="option-1-shop/">
+      <div class="opt__preview"><iframe src="option-1-shop/" tabindex="-1" title="Варіант 1"></iframe></div>
+      <div class="opt__body"><span class="opt__num">Варіант 1</span><h2>Інтернет-магазин</h2><p>За референсом yowshop: світлий, чистий каталог із кошиком, категоріями, новинками та блоком для оптових клієнтів. Найпрактичніший для продажів.</p><span class="opt__go">Відкрити →</span></div>
+    </a>
+    <a class="opt" href="option-2-collage/">
+      <div class="opt__preview"><iframe src="option-2-collage/" tabindex="-1" title="Варіант 2"></iframe></div>
+      <div class="opt__body"><span class="opt__num">Варіант 2</span><h2>Колаж ручної роботи</h2><p>За референсом Loveleen Pereira: теплий глиняний фон, полароїди, стрічки та рукописні підписи. Емоційний, «живий», запам'ятовується.</p><span class="opt__go">Відкрити →</span></div>
+    </a>
+    <a class="opt" href="option-3-editorial/">
+      <div class="opt__preview"><iframe src="option-3-editorial/" tabindex="-1" title="Варіант 3"></iframe></div>
+      <div class="opt__body"><span class="opt__num">Варіант 3</span><h2>Спокійний editorial</h2><p>За референсом Swarnima Shukla: світлий фон у крапку, плаваюча навігація, великі тексти та колекції як «кейси» з каруселями.</p><span class="opt__go">Відкрити →</span></div>
+    </a>
+    <a class="opt" href="option-4-studio/">
+      <div class="opt__preview"><iframe src="option-4-studio/" tabindex="-1" title="Варіант 4"></iframe></div>
+      <div class="opt__body"><span class="opt__num">Варіант 4</span><h2>Майстерня з характером</h2><p>За референсом Samay: помаранчевий інтро-екран, де «nana.» малюється по лініях, велике ім'я з поляроїдами, темна горизонтальна галерея колекції та блок «про нас» у вигляді вікна браузера з вкладками.</p><span class="opt__go">Відкрити →</span></div>
+    </a>
+  </div>
+</div>
+<script src="assets/logo.js"></script>
+</body>
+</html>

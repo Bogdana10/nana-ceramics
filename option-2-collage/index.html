@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nana Ceramics — кераміка, зроблена руками</title>
+<meta name="description" content="Nana Ceramics — український виробник керамічних горщиків, ваз та сувенірів. Ручна робота, опт та роздріб.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Great+Vibes&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/logo.css">
+<link rel="stylesheet" href="../assets/product-modal.css">
+<link rel="stylesheet" href="../assets/cart.css">
+<style>
+  :root {
+    --clay: #A97A6C;      /* dusty terracotta-rose, like unglazed clay */
+    --clay-deep: #8E5D50;
+    --cream: #F4EBDD;
+    --paper: #FBF7F0;
+    --olive: #8A8148;
+    --pink: #E3A2AE;
+    --brown: #6B3A26;
+    --ink: #2A211D;
+    /* product window theme */
+    --pm-bg: var(--paper); --pm-ink: var(--ink); --pm-muted: #7d6a60; --pm-line: #e3d6c8;
+    --pm-accent: var(--clay-deep); --pm-accent-ink: #fff; --pm-radius: 4px;
+    --pm-head: "Cormorant Garamond", serif; --pm-body: "IBM Plex Mono", monospace;
+  }
+  .pm__title { font-style: italic; font-weight: 500; font-size: clamp(32px, 3.6vw, 42px); }
+  .pm__eyebrow { font-family: "Caveat", cursive; font-size: 22px; letter-spacing: 0; text-transform: none; color: var(--clay-deep); }
+  .pm__main { border-radius: 2px; box-shadow: inset 0 0 0 10px var(--paper); }
+  .board .polaroid::after { content: "дивитись →"; position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%) rotate(-4deg); background: var(--cream); color: var(--brown); font: 600 20px/1 "Caveat", cursive; padding: 6px 12px; opacity: 0; transition: opacity .2s; pointer-events: none; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+  .board .polaroid:hover::after { opacity: 1; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body {
+    margin: 0; color: var(--cream); font: 400 14px/1.7 "IBM Plex Mono", ui-monospace, monospace; overflow-x: hidden;
+    background-color: var(--clay);
+    /* speckles = grog in clay */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg stroke='%23F4D9B8' stroke-opacity='.45' stroke-linecap='round'%3E%3Cpath d='M12 20l4 7M60 14l-3 6M120 40l5 2M180 22l-2 7M30 90l6-2M95 100l2 6M160 85l-6 3M205 120l3 5M20 160l5 3M70 150l-2 6M130 170l6-1M190 190l-3-6M45 205l4 2M110 210l-1-6M150 130l3 5M80 60l-5 3'/%3E%3C/g%3E%3Cg fill='%23F4D9B8' fill-opacity='.35'%3E%3Ccircle cx='140' cy='8' r='1.2'/%3E%3Ccircle cx='8' cy='120' r='1'/%3E%3Ccircle cx='100' cy='150' r='1.2'/%3E%3Ccircle cx='210' cy='60' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  .script { font-family: "Great Vibes", cursive; font-weight: 400; }
+  .serif { font-family: "Cormorant Garamond", serif; }
+  .hand { font-family: "Caveat", cursive; }
+
+  /* ---------- nav ---------- */
+  .nav { position: fixed; inset: 0 0 auto; z-index: 30; display: flex; justify-content: space-between; align-items: center; padding: 14px clamp(16px, 3vw, 42px); font-size: 13px; transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
+  .nav.is-scrolled { background: rgba(169,122,108,.82); backdrop-filter: blur(10px); border-color: rgba(244,235,221,.25); }
+  .nav__links { display: flex; gap: 34px; }
+  .nav a { text-decoration: none; padding-bottom: 3px; border-bottom: 1px solid transparent; }
+  .nav a:hover { border-color: var(--cream); }
+  [data-cart-count] { display: inline-block; }
+  .cart__title { font-style: italic; font-weight: 500; font-size: 30px; }
+  .cart-fab { background: var(--pink); color: var(--brown); }
+  @media (max-width: 860px) { .nav__contact { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 90px 16px 60px; }
+  .hero__title { line-height: .78; margin: 0; color: #fff; }
+  .hero__title .script { display: block; font-size: clamp(110px, 17vw, 230px); }
+  .hero__title .serif { display: block; font-style: italic; font-size: clamp(44px, 6.4vw, 88px); letter-spacing: .02em; margin-top: -.15em; padding-left: 1.6em; }
+  .hero__kicker { margin: 26px 0 8px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+  .hero__lead { max-width: 40ch; margin: 0 auto; font-size: 13px; opacity: .9; }
+  .hero__scroll { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; }
+  .hero__scroll::after { content: ""; width: 1px; height: 26px; background: currentColor; animation: drip 1.8s ease-in-out infinite; transform-origin: top; }
+  @keyframes drip { 0%{transform:scaleY(0)} 50%{transform:scaleY(1)} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+  /* collage items */
+  .piece { position: absolute; cursor: grab; touch-action: none; user-select: none; transition: filter .2s; z-index: 2; }
+  .piece:active { cursor: grabbing; filter: drop-shadow(0 18px 24px rgba(60,25,15,.35)); }
+  .polaroid { background: var(--paper); padding: 10px 10px 34px; box-shadow: 0 10px 24px rgba(70,30,20,.25); }
+  .polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; pointer-events: none; }
+  .polaroid figcaption { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; color: var(--ink); font: 600 20px/1 "Caveat", cursive; }
+  .polaroid--olive { background: var(--olive); } .polaroid--olive figcaption { color: var(--cream); }
+  .tape { position: absolute; width: 74px; height: 22px; background: rgba(244,235,221,.62); top: -11px; left: 50%; transform: translateX(-50%) rotate(-4deg); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .grid-paper { background-color: var(--paper); background-image: linear-gradient(rgba(150,120,110,.18) 1px, transparent 1px), linear-gradient(90deg, rgba(150,120,110,.18) 1px, transparent 1px); background-size: 18px 18px; box-shadow: 0 10px 30px rgba(70,30,20,.25); }
+  .note { background: var(--cream); color: var(--ink); padding: 18px 20px; font-size: 13px; line-height: 1.6; box-shadow: 0 6px 18px rgba(70,30,20,.2); text-align: left; }
+  .doodle { color: var(--brown); pointer-events: none; }
+  .stamp { width: 132px; height: 132px; color: var(--cream); }
+  .stamp text { font: 500 10.5px "IBM Plex Mono", monospace; letter-spacing: 2.4px; fill: currentColor; text-transform: uppercase; }
+  .stamp .spin { transform-origin: 66px 66px; animation: spin 22s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- ribbons ---------- */
+  .ribbons { position: relative; height: 210px; margin: 10px 0 40px; overflow: hidden; }
+  .ribbon { position: absolute; left: -5%; width: 110%; white-space: nowrap; overflow: hidden; padding: 9px 0; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+  .ribbon--cream { top: 70px; background: var(--cream); color: var(--clay-deep); transform: rotate(-3.5deg); }
+  .ribbon--pink { top: 100px; background: var(--pink); color: var(--brown); transform: rotate(1.6deg); }
+  .ribbon__track { display: inline-block; animation: marquee 38s linear infinite; }
+  .ribbon--pink .ribbon__track { animation-direction: reverse; animation-duration: 44s; }
+  .ribbon em { font: italic 500 18px "Cormorant Garamond", serif; text-transform: none; letter-spacing: 0; }
+  .ribbon i { font-style: normal; margin: 0 18px; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ---------- sections ---------- */
+  .wrap { width: min(1040px, 100% - 32px); margin-inline: auto; position: relative; }
+  .h-swash { color: #fff; font-weight: 400; line-height: 1; margin: 0; }
+  .h-swash .script { font-size: 1.45em; margin-right: .02em; }
+  .h-swash .serif { font-style: normal; font-weight: 500; letter-spacing: -.01em; }
+  .h-xl { font-size: clamp(56px, 8vw, 104px); }
+
+  .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: start; padding-top: 30px; }
+  .card-olive { position: relative; background: var(--olive); color: var(--cream); padding: 36px 36px 44px; margin-top: 24px; transform: rotate(-.6deg); box-shadow: 0 14px 30px rgba(60,40,10,.2); }
+  .card-olive p { margin: 0 0 14px; }
+  .card-olive::after { content: "з любов'ю до глини ↗"; position: absolute; right: 22px; top: 12px; font-size: 11px; opacity: .8; }
+  .about__photo { margin-top: 70px; transform: rotate(2deg); }
+  .about__photo img { aspect-ratio: 3/4; object-fit: cover; }
+  .links { display: flex; gap: 14px; margin-top: 22px; font-size: 13px; }
+
+  /* timeline windows */
+  .story { padding: 120px 0 40px; }
+  .story__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 40px; }
+  .win { background: rgba(244,235,221,.18); border: 1px solid rgba(244,235,221,.55); box-shadow: 4px 4px 0 rgba(107,58,38,.35); }
+  .win:nth-child(2) { transform: translateY(36px); } .win:nth-child(3) { transform: translateY(12px); }
+  .win__bar { display: flex; justify-content: space-between; align-items: center; background: var(--clay-deep); padding: 6px 10px; font-size: 12px; }
+  .win__bar span:last-child { width: 18px; height: 18px; display: grid; place-items: center; border: 1px solid rgba(244,235,221,.6); font-size: 11px; }
+  .win__body { padding: 18px 20px 22px; font-size: 13px; }
+  .win__body b { display: block; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; color: #fff; }
+
+  /* collection */
+  .collection { padding: 140px 0 60px; }
+  .collection__head { text-align: right; }
+  .collection__head p { font: italic 400 24px "Cormorant Garamond", serif; margin: 6px 0 0; }
+  .board { position: relative; height: 1080px; margin-top: 30px; }
+  .board .polaroid { width: clamp(180px, 23vw, 250px); }
+  .price { position: absolute; right: -14px; top: 18px; background: var(--pink); color: var(--brown); font: 600 18px/1 "Caveat", cursive; padding: 6px 10px; transform: rotate(8deg); box-shadow: 0 3px 8px rgba(0,0,0,.15); }
+  .board .win { position: absolute; width: min(330px, 80%); z-index: 3; }
+
+  /* contact */
+  .contact { text-align: center; padding: 80px 16px 140px; position: relative; }
+  .contact p { max-width: 46ch; margin: 18px auto 30px; }
+  .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border: 1px solid var(--cream); text-decoration: none; font-size: 13px; transition: background .2s, color .2s; background: transparent; }
+  .btn:hover, .btn--solid { background: var(--cream); color: var(--clay-deep); }
+  .btn--solid:hover { background: #fff; }
+  footer { display: flex; justify-content: space-between; padding: 22px clamp(16px, 3vw, 42px); border-top: 1px solid rgba(244,235,221,.3); font-size: 12px; gap: 10px; flex-wrap: wrap; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 860px) {
+    .nav__links { gap: 16px; }
+    .nav__brand { display: none; }
+    .hero .piece { transform: scale(.62) !important; }
+    .hero .hide-sm { display: none; }
+    .about { grid-template-columns: 1fr; gap: 10px; }
+    .about__photo { margin-top: 20px; width: 70%; justify-self: end; }
+    .story__grid { grid-template-columns: 1fr; }
+    .win:nth-child(n) { transform: none; }
+    .board { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 36px 18px; }
+    .board .piece { position: relative; inset: auto !important; width: auto; transform: rotate(var(--r, 0deg)) !important; }
+    .board .win { position: relative; grid-column: 1/-1; width: 100%; left: auto !important; top: auto !important; transform: none !important; }
+    .price { right: -6px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ribbon__track, .stamp .spin, .hero__scroll::after { animation: none; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#top" class="nav__brand">Nana Ceramics</a>
+  <div class="nav__links"><a href="#about">Про нас</a><a href="#collection">Колекція</a><a href="#story">Історія</a></div>
+  <div style="display:flex;gap:22px"><a href="#contact" class="nav__contact">Контакти</a><a href="#" data-cart-open>Кошик (<span data-cart-count>0</span>)</a></div>
+</nav>
+
+<header class="hero" id="top">
+  <!-- left collage -->
+  <div class="piece grid-paper hide-sm" style="left:3%;top:20%;width:270px;height:330px;transform:rotate(-7deg)"></div>
+  <figure class="piece polaroid polaroid--olive" style="left:6%;top:16%;width:150px;transform:rotate(-5deg);margin:0"><span class="tape"></span><img src="../assets/img/workshop.jpg" alt="Майстриня на виробництві"><figcaption>ми на роботі</figcaption></figure>
+  <div class="piece note hide-sm" style="left:3%;top:57%;width:250px;transform:rotate(-8deg)">«Хороша ваза — та, в якій навіть одна гілочка виглядає як букет.»</div>
+  <svg class="piece doodle hide-sm" style="left:16%;top:5%;width:70px;transform:rotate(-10deg)" viewBox="0 0 60 90" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M30 40c-8-10-18-14-22-8 6 2 12 6 22 8zM30 40c8-12 18-16 22-10-6 2-13 6-22 10zM30 40V8M30 22c-5-4-11-5-12-2M30 16c5-4 10-4 11-1"/><path d="M14 46h32l-4 36H18z"/><path d="M12 46h36"/></svg>
+
+  <!-- right collage -->
+  <figure class="piece polaroid" data-product="wave-sand" tabindex="0" style="right:7%;top:12%;width:190px;transform:rotate(6deg);margin:0"><span class="tape"></span><img src="../assets/img/vase-wave.jpg" alt="Ваза «Хвиля»"><figcaption>«Хвиля» ♡</figcaption></figure>
+  <svg class="piece stamp hide-sm" style="right:24%;top:46%" viewBox="0 0 132 132"><defs><path id="c" d="M66 66m-50 0a50 50 0 1 1 100 0a50 50 0 1 1-100 0"/></defs><g class="spin"><text><textPath href="#c">ручна робота ✦ зроблено в Україні ✦</textPath></text></g><circle cx="66" cy="66" r="30" fill="#E3A2AE"/><path d="M58 52h16l-2 22H60z" fill="#6B3A26"/><circle cx="73" cy="72" r="7" fill="#D2A05C"/></svg>
+  <figure class="piece polaroid hide-sm" data-product="muse" tabindex="0" style="right:4%;top:58%;width:150px;transform:rotate(-4deg);margin:0"><img src="../assets/img/vase-busts.jpg" alt="Вази-бюсти"><figcaption>муза</figcaption></figure>
+  <svg class="piece doodle hide-sm" style="left:24%;bottom:10%;width:84px;transform:rotate(14deg)" viewBox="0 0 90 70" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="45" cy="16" rx="30" ry="8"/><path d="M15 16c0 22 10 44 30 44s30-22 30-44"/><path d="M28 34c6 4 28 4 34 0"/></svg>
+
+  <div style="position:relative;z-index:1">
+    <h1 class="hero__title"><span class="script">Nana</span><span class="serif">ceramics</span></h1>
+    <p class="hero__kicker">виробник керамічних ваз і горщиків</p>
+    <p class="hero__lead">Формуємо, випалюємо та глазуруємо кераміку власними руками. Для вашого дому, квіткової крамниці чи шоуруму — опт і роздріб.</p>
+  </div>
+  <a class="hero__scroll" href="#about">гортай</a>
+</header>
+
+<div class="ribbons" aria-hidden="true">
+  <div class="ribbon ribbon--cream"><div class="ribbon__track" id="r1"></div></div>
+  <div class="ribbon ribbon--pink"><div class="ribbon__track" id="r2"></div></div>
+</div>
+
+<section class="wrap" id="about">
+  <h2 class="h-swash h-xl"><span class="script">П</span><span class="serif">ро нас</span></h2>
+  <div class="about">
+    <div>
+      <div class="card-olive">
+        <p>Ми — Nana Ceramics, українська майстерня, яка виросла у справжнє виробництво керамічних горщиків, ваз та сувенірів.</p>
+        <p>Кожна річ проходить шлях від гіпсової форми до печі й глазурі через наші руки. Тому кожна трохи інша — і саме це ми любимо.</p>
+        <p>Робимо вази, в яких квітам добре, і горщики, які не соромно поставити на найкраще місце в домі.</p>
+      </div>
+      <div class="links"><a href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">Instagram</a> | <a href="#contact">Опт</a> | <a href="#contact">Telegram</a></div>
+    </div>
+    <figure class="polaroid about__photo" style="position:relative;margin:70px 0 0"><span class="tape"></span><img src="../assets/img/vase-xmas-shelf.jpg" alt="Вази на полиці виробництва"><figcaption>свіженькі, з печі</figcaption></figure>
+  </div>
+</section>
+
+<section class="wrap story" id="story">
+  <h2 class="h-swash" style="font-size:clamp(44px,6vw,76px)"><span class="script">Н</span><span class="serif">аша історія</span></h2>
+  <div class="story__grid">
+    <div class="win"><div class="win__bar"><span>01</span><span>×</span></div><div class="win__body"><b>Слов'янськ</b>Тут народилася Nana Ceramics: перші форми, перші печі, перші вази, які розлетілися по всій країні.</div></div>
+    <div class="win"><div class="win__bar"><span>02</span><span>×</span></div><div class="win__body"><b>Релокація</b>Через війну ми перевезли виробництво: обладнання, форми і команду. Не зупинились ні на сезон.</div></div>
+    <div class="win"><div class="win__bar"><span>03</span><span>×</span></div><div class="win__body"><b>Новий цех</b>Сьогодні працюємо на новому місці — більше простору, більше колекцій, ті самі руки.</div></div>
+  </div>
+</section>
+
+<section class="wrap collection" id="collection">
+  <div class="collection__head">
+    <h2 class="h-swash h-xl"><span class="script">К</span><span class="serif">олекція</span></h2>
+    <p>маленькі речі, зроблені руками</p>
+  </div>
+  <div class="board" id="board"></div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="h-swash h-xl"><span class="script">Н</span><span class="serif">апишіть нам</span></h2>
+  <p>Хочете одну вазу собі, подарунок або партію горщиків для магазину — напишіть, підберемо та порахуємо.</p>
+  <div class="btns">
+    <a class="btn btn--solid" href="https://www.instagram.com/nanaceramics1/" target="_blank" rel="noopener">Написати в Instagram ↗</a>
+    <a class="btn" href="#">Telegram</a>
+    <a class="btn" href="#">Оптовий прайс</a>
+  </div>
+</section>
+
+<footer><span class="nana-logo" data-variant="light" style="font-size:11px"></span><span>© 2026 · Варіант 2 · колаж</span></footer>
+
+<script src="../assets/logo.js"></script>
+<script src="../assets/products.js"></script>
+<script>
+  // ribbons
+  const words1 = ['ручна робота', '<em>з любов\'ю до глини</em>', 'опт і роздріб', 'вази', '<em>горщики для квітів</em>', 'сувеніри', 'зроблено в Україні'];
+  const words2 = ['новорічна колекція', '<em>форми, в яких квітам добре</em>', 'власне виробництво', 'відправка по Україні', '<em>кожна — трохи інша</em>'];
+  const fill = (id, w) => { const s = w.map(x => x + '<i>✦</i>').join(''); document.getElementById(id).innerHTML = s.repeat(4) + s.repeat(4); };
+  fill('r1', words1); fill('r2', words2);
+
+  // collection board (prices are placeholders where unknown)
+  const P = NANA.products;
+  const items = [
+    { id: 'wave-sand', cap: 'Хвиля, пісок', pos: 'left:2%;top:0', r: -5 },
+    { id: 'muse', cap: 'Муза', pos: 'left:36%;top:60px', r: 4 },
+    { id: 'wave-bronze', cap: 'Хвиля, бронза', pos: 'right:3%;top:10px', r: -3 },
+    { id: 'xmas-candy', cap: 'Карамель', pos: 'left:8%;top:430px', r: 6 },
+    { id: 'xmas-tree', cap: 'Ялинка', pos: 'right:8%;top:440px', r: -7 },
+    { id: 'xmas-snowman', cap: 'Сніговики', pos: 'left:24%;top:760px', r: -2 },
+    { id: 'pot-handmade', cap: 'горщики з цеху', pos: 'right:20%;top:780px', r: 5 },
+  ];
+  const board = document.getElementById('board');
+  board.innerHTML = items.map(x => `
+    <figure class="piece polaroid" data-product="${x.id}" tabindex="0" aria-label="${P[x.id].title} — відкрити" style="${x.pos};--r:${x.r}deg;transform:rotate(${x.r}deg);margin:0">
+      <span class="tape"></span><img src="../assets/img/${P[x.id].img}" alt="${P[x.id].title}" loading="lazy">
+      <figcaption>${x.cap}</figcaption><span class="price">${P[x.id].price} ₴</span>
+    </figure>`).join('') + `
+    <div class="win" style="left:50%;top:470px;transform:translateX(-50%) rotate(-1deg)">
+      <div class="win__bar"><span>опт.txt</span><span>×</span></div>
+      <div class="win__body"><b>Для магазинів</b>Квітковим крамницям, шоурумам і декораторам — ціни від виробника та стабільні партії. Пишіть — надішлемо прайс.</div>
+    </div>`;
+
+  // nav background on scroll
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('is-scrolled', scrollY > 40), { passive: true });
+
+  // drag collage pieces around (desktop)
+  if (matchMedia('(min-width: 861px)').matches) {
+    document.querySelectorAll('.piece').forEach((el) => {
+      let sx, sy, ox = 0, oy = 0, base = el.style.transform || '';
+      el.addEventListener('pointerdown', (e) => {
+        el.setPointerCapture(e.pointerId); sx = e.clientX - ox; sy = e.clientY - oy; el.style.zIndex = 10;
+        const x0 = e.clientX, y0 = e.clientY; el.dataset.dragged = '';
+        const move = (ev) => { ox = ev.clientX - sx; oy = ev.clientY - sy; el.style.transform = `translate(${ox}px,${oy}px) ${base}`; if (Math.hypot(ev.clientX - x0, ev.clientY - y0) > 6) el.dataset.dragged = '1'; };
+        const up = () => { el.removeEventListener('pointermove', move); el.removeEventListener('pointerup', up); };
+        el.addEventListener('pointermove', move); el.addEventListener('pointerup', up);
+      });
+    });
+  }
+</script>
+<script src="../assets/cart.js"></script>
+<script src="../assets/product-modal.js"></script>
+</body>
+</html>

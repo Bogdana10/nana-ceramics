@@ -1,0 +1,5 @@
+.nana-logo { display: inline-flex; align-items: flex-end; gap: .15em; font-size: 16px; line-height: 1; text-decoration: none; }
+.nana-logo__text { display: flex; flex-direction: column; align-items: flex-start; }
+.nana-logo__script { font-family: "Great Vibes", cursive; font-size: 2.6em; line-height: .8; margin-left: -.05em; }
+.nana-logo__sans { font-family: "Montserrat", sans-serif; font-weight: 300; font-size: 1.05em; letter-spacing: .02em; margin: -.05em 0 0 1.6em; }
+.nana-logo__mark { width: 2.4em; height: auto; margin-bottom: .45em; }
