@@ -41,7 +41,6 @@ window.NANA = {
     "gallery": [
       "cat/lady/photo1.jpg",
       "cat/lady/photo2.jpg",
-      "cat/lady/photo3.jpg",
       "cat/lady/c01.jpg",
       "cat/lady/c02.jpg",
       "cat/lady/c03.jpg",
@@ -54,27 +53,27 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Бежевий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Чорний глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Білий муар",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Чорний муар",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Фіолет муар",
-          "img": 8
+          "img": 7
         }
       ]
     }
@@ -222,7 +221,7 @@ window.NANA = {
   },
   "kim": {
     "title": "Ваза «Кім»",
-    "img": "cat/kim/photo1.jpg",
+    "img": "cat/kim/photo2.jpg",
     "price": null,
     "type": "vase",
     "collection": "Вази · глянець, муар",
@@ -247,7 +246,6 @@ window.NANA = {
       ]
     ],
     "gallery": [
-      "cat/kim/photo1.jpg",
       "cat/kim/photo2.jpg",
       "cat/kim/c01.jpg",
       "cat/kim/c02.jpg",
@@ -263,35 +261,35 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 2
+          "img": 1
         },
         {
           "name": "Бежевий глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Рожевий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Бірюза глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Білий муар",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Шоколад муар",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Чорний муар",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Сірий муар",
-          "img": 9
+          "img": 8
         }
       ]
     }
@@ -332,7 +330,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/sertse/photo1.jpg",
-      "cat/sertse/photo2.jpg",
       "cat/sertse/c01.jpg",
       "cat/sertse/c02.jpg",
       "cat/sertse/c03.jpg"
@@ -342,15 +339,15 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 2
+          "img": 1
         },
         {
           "name": "Рожевий глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Червоний глянець",
-          "img": 4
+          "img": 3
         }
       ]
     },
@@ -799,7 +796,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/sova/photo1.jpg",
-      "cat/sova/photo2.jpg",
       "cat/sova/c01.jpg",
       "cat/sova/c02.jpg",
       "cat/sova/c03.jpg",
@@ -814,35 +810,35 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 2
+          "img": 1
         },
         {
           "name": "Бежевий глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Чорний глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Червоний глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Білий муар",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Шоколад муар",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Чорний муар",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Червоний муар",
-          "img": 9
+          "img": 8
         }
       ]
     }
@@ -942,7 +938,6 @@ window.NANA = {
     "gallery": [
       "cat/edem/photo1.jpg",
       "cat/edem/photo2.jpg",
-      "cat/edem/photo3.jpg",
       "cat/edem/c01.jpg",
       "cat/edem/c02.jpg",
       "cat/edem/c03.jpg",
@@ -957,35 +952,35 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Бежевий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Чорний глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Червоний глянець",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Білий муар",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Шоколад муар",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Чорний муар",
-          "img": 9
+          "img": 8
         },
         {
           "name": "Жовтий муар",
-          "img": 10
+          "img": 9
         }
       ]
     }
@@ -1019,7 +1014,6 @@ window.NANA = {
     "gallery": [
       "cat/heo/photo1.jpg",
       "cat/heo/photo2.jpg",
-      "cat/heo/photo3.jpg",
       "cat/heo/c01.jpg",
       "cat/heo/c02.jpg",
       "cat/heo/c03.jpg",
@@ -1034,35 +1028,35 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Бежевий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Капучино глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Червоний глянець",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Рожевий глянець",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Бірюза глянець",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Білий муар",
-          "img": 9
+          "img": 8
         },
         {
           "name": "Чорний муар",
-          "img": 10
+          "img": 9
         }
       ]
     }
@@ -1099,7 +1093,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/kai/photo1.jpg",
-      "cat/kai/photo2.jpg",
       "cat/kai/photo3.jpg",
       "cat/kai/photo4.jpg",
       "cat/kai/c01.jpg",
@@ -1112,19 +1105,19 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Чорний глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Червоний глянець",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Чорний муар",
-          "img": 7
+          "img": 6
         }
       ]
     },
@@ -1168,7 +1161,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/afrykanka/photo1.jpg",
-      "cat/afrykanka/photo2.jpg",
       "cat/afrykanka/c01.jpg",
       "cat/afrykanka/c02.jpg",
       "cat/afrykanka/c03.jpg",
@@ -1180,23 +1172,23 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 2
+          "img": 1
         },
         {
           "name": "Чорний глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Червоний глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Білий муар",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Чорний муар",
-          "img": 6
+          "img": 5
         }
       ]
     }
@@ -1230,7 +1222,6 @@ window.NANA = {
     "gallery": [
       "cat/shar/photo1.jpg",
       "cat/shar/photo2.jpg",
-      "cat/shar/photo3.jpg",
       "cat/shar/c01.jpg",
       "cat/shar/c02.jpg",
       "cat/shar/c03.jpg",
@@ -1241,19 +1232,19 @@ window.NANA = {
       "values": [
         {
           "name": "Білий шовк",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Шоколад шовк",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Білий глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Червоний глянець",
-          "img": 6
+          "img": 5
         }
       ]
     }
@@ -1288,7 +1279,6 @@ window.NANA = {
       "cat/kvin/photo1.jpg",
       "cat/kvin/photo2.jpg",
       "cat/kvin/photo3.jpg",
-      "cat/kvin/photo4.jpg",
       "cat/kvin/c01.jpg",
       "cat/kvin/c02.jpg",
       "cat/kvin/c03.jpg",
@@ -1302,31 +1292,31 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Бежевий глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Чорний глянець",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Рожевий глянець",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Червоний глянець",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Білий муар",
-          "img": 9
+          "img": 8
         },
         {
           "name": "Чорний муар",
-          "img": 10
+          "img": 9
         }
       ]
     }
@@ -1360,8 +1350,8 @@ window.NANA = {
     "gallery": [
       "cat/poli/photo1.jpg",
       "cat/poli/photo2.jpg",
-      "cat/poli/photo3.jpg",
       "cat/poli/photo4.jpg",
+      "cat/poli/photo5.jpg",
       "cat/poli/c01.jpg",
       "cat/poli/c02.jpg",
       "cat/poli/c03.jpg",
@@ -1472,7 +1462,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/spektr/photo1.jpg",
-      "cat/spektr/photo2.jpg",
       "cat/spektr/c01.jpg",
       "cat/spektr/c02.jpg",
       "cat/spektr/c03.jpg",
@@ -1487,35 +1476,35 @@ window.NANA = {
       "values": [
         {
           "name": "Білий шовк",
-          "img": 2
+          "img": 1
         },
         {
           "name": "Бежевий шовк",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Сірий шовк",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Шоколад шовк",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Червоний шовк",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Білий глянець",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Червоний глянець",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Чорний муар",
-          "img": 9
+          "img": 8
         }
       ]
     }
@@ -1548,9 +1537,7 @@ window.NANA = {
     ],
     "gallery": [
       "cat/velesa/photo1.jpg",
-      "cat/velesa/photo2.jpg",
       "cat/velesa/photo3.jpg",
-      "cat/velesa/photo4.jpg",
       "cat/velesa/c01.jpg",
       "cat/velesa/c02.jpg",
       "cat/velesa/c03.jpg",
@@ -1569,51 +1556,51 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 4
+          "img": 2
         },
         {
           "name": "Бежевий глянець",
-          "img": 5
+          "img": 3
         },
         {
           "name": "Чорний глянець",
-          "img": 6
+          "img": 4
         },
         {
           "name": "Червоний глянець",
-          "img": 7
+          "img": 5
         },
         {
           "name": "Оливка глянець",
-          "img": 8
+          "img": 6
         },
         {
           "name": "Зелений глянець",
-          "img": 9
+          "img": 7
         },
         {
           "name": "Бірюза глянець",
-          "img": 10
+          "img": 8
         },
         {
           "name": "Білий муар",
-          "img": 11
+          "img": 9
         },
         {
           "name": "Чорний муар",
-          "img": 12
+          "img": 10
         },
         {
           "name": "Фіолет муар",
-          "img": 13
+          "img": 11
         },
         {
           "name": "Жовтий муар",
-          "img": 14
+          "img": 12
         },
         {
           "name": "Червоний муар",
-          "img": 15
+          "img": 13
         }
       ]
     }
@@ -1647,8 +1634,8 @@ window.NANA = {
     "gallery": [
       "cat/yula/photo1.jpg",
       "cat/yula/photo2.jpg",
-      "cat/yula/photo3.jpg",
       "cat/yula/photo4.jpg",
+      "cat/yula/photo5.jpg",
       "cat/yula/c01.jpg",
       "cat/yula/c02.jpg",
       "cat/yula/c03.jpg",
@@ -1720,7 +1707,6 @@ window.NANA = {
     "gallery": [
       "cat/pairus/photo1.jpg",
       "cat/pairus/photo2.jpg",
-      "cat/pairus/photo3.jpg",
       "cat/pairus/photo4.jpg",
       "cat/pairus/c01.jpg",
       "cat/pairus/c02.jpg",
@@ -1740,51 +1726,51 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Бежевий глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Капучино глянець",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Чорний глянець",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Червоний глянець",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Зелений глянець",
-          "img": 9
+          "img": 8
         },
         {
           "name": "Оливка глянець",
-          "img": 10
+          "img": 9
         },
         {
           "name": "Бірюза глянець",
-          "img": 11
+          "img": 10
         },
         {
           "name": "Білий муар",
-          "img": 12
+          "img": 11
         },
         {
           "name": "Чорний муар",
-          "img": 13
+          "img": 12
         },
         {
           "name": "Шоколад муар",
-          "img": 14
+          "img": 13
         },
         {
           "name": "Червоний муар",
-          "img": 15
+          "img": 14
         }
       ]
     }
@@ -1818,8 +1804,8 @@ window.NANA = {
     "gallery": [
       "cat/sambuka/photo1.jpg",
       "cat/sambuka/photo2.jpg",
-      "cat/sambuka/photo3.jpg",
       "cat/sambuka/photo4.jpg",
+      "cat/sambuka/photo5.jpg",
       "cat/sambuka/c01.jpg",
       "cat/sambuka/c02.jpg",
       "cat/sambuka/c03.jpg",
@@ -1906,7 +1892,6 @@ window.NANA = {
     "gallery": [
       "cat/spliachyi/photo1.jpg",
       "cat/spliachyi/photo2.jpg",
-      "cat/spliachyi/photo3.jpg",
       "cat/spliachyi/c01.jpg",
       "cat/spliachyi/c02.jpg",
       "cat/spliachyi/c03.jpg",
@@ -1918,23 +1903,23 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Бежевий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Капучино глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Сірий муар",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Чорний муар",
-          "img": 7
+          "img": 6
         }
       ]
     }
@@ -1971,7 +1956,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/vin-vona/photo1.jpg",
-      "cat/vin-vona/photo2.jpg",
       "cat/vin-vona/c01.jpg",
       "cat/vin-vona/c02.jpg",
       "cat/vin-vona/c03.jpg"
@@ -1981,15 +1965,15 @@ window.NANA = {
       "values": [
         {
           "name": "Білий муар",
-          "img": 2
+          "img": 1
         },
         {
           "name": "Чорний муар",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Жовто-блакитний муар",
-          "img": 4
+          "img": 3
         }
       ]
     },
@@ -2155,9 +2139,9 @@ window.NANA = {
     ],
     "gallery": [
       "cat/pot-gloria/photo1.jpg",
-      "cat/pot-gloria/photo2.jpg",
       "cat/pot-gloria/photo3.jpg",
-      "cat/pot-gloria/photo4.jpg",
+      "cat/pot-gloria/photo5.jpg",
+      "cat/pot-gloria/photo6.jpg",
       "cat/pot-gloria/c01.jpg",
       "cat/pot-gloria/c02.jpg",
       "cat/pot-gloria/c03.jpg",
@@ -2365,7 +2349,6 @@ window.NANA = {
     "gallery": [
       "cat/pot-kvadrat/photo1.jpg",
       "cat/pot-kvadrat/photo2.jpg",
-      "cat/pot-kvadrat/photo3.jpg",
       "cat/pot-kvadrat/c01.jpg",
       "cat/pot-kvadrat/c02.jpg",
       "cat/pot-kvadrat/c03.jpg",
@@ -2379,31 +2362,31 @@ window.NANA = {
       "values": [
         {
           "name": "Білий шовк",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Бежевий шовк",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Сірий шовк",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Капучино шовк",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Шоколад шовк",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Оливка шовк",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Білий глянець",
-          "img": 9
+          "img": 8
         }
       ]
     },
@@ -2458,9 +2441,8 @@ window.NANA = {
     ],
     "gallery": [
       "cat/pot-duna/photo1.jpg",
-      "cat/pot-duna/photo2.jpg",
       "cat/pot-duna/photo3.jpg",
-      "cat/pot-duna/photo4.jpg",
+      "cat/pot-duna/photo5.jpg",
       "cat/pot-duna/c01.jpg",
       "cat/pot-duna/c02.jpg",
       "cat/pot-duna/c03.jpg",
@@ -2477,43 +2459,43 @@ window.NANA = {
       "values": [
         {
           "name": "Білий шовк",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Сірий шовк",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Бежевий шовк",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Капучино шовк",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Білий глянець",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Чорний глянець",
-          "img": 9
+          "img": 8
         },
         {
           "name": "Червоний глянець",
-          "img": 10
+          "img": 9
         },
         {
           "name": "Сірий муар",
-          "img": 11
+          "img": 10
         },
         {
           "name": "Чорний муар",
-          "img": 12
+          "img": 11
         },
         {
           "name": "Шоколад муар",
-          "img": 13
+          "img": 12
         }
       ]
     },
@@ -2561,8 +2543,8 @@ window.NANA = {
     "gallery": [
       "cat/pot-shar/photo1.jpg",
       "cat/pot-shar/photo2.jpg",
-      "cat/pot-shar/photo3.jpg",
       "cat/pot-shar/photo4.jpg",
+      "cat/pot-shar/photo6.jpg",
       "cat/pot-shar/c01.jpg",
       "cat/pot-shar/c02.jpg",
       "cat/pot-shar/c03.jpg",
@@ -2717,9 +2699,9 @@ window.NANA = {
     ],
     "gallery": [
       "cat/pot-kai/photo1.jpg",
-      "cat/pot-kai/photo2.jpg",
       "cat/pot-kai/photo3.jpg",
       "cat/pot-kai/photo4.jpg",
+      "cat/pot-kai/photo6.jpg",
       "cat/pot-kai/c01.jpg",
       "cat/pot-kai/c02.jpg",
       "cat/pot-kai/c03.jpg",
@@ -2846,9 +2828,9 @@ window.NANA = {
     ],
     "gallery": [
       "cat/pot-afrykanka/photo1.jpg",
-      "cat/pot-afrykanka/photo2.jpg",
       "cat/pot-afrykanka/photo3.jpg",
       "cat/pot-afrykanka/photo4.jpg",
+      "cat/pot-afrykanka/photo6.jpg",
       "cat/pot-afrykanka/c01.jpg",
       "cat/pot-afrykanka/c02.jpg",
       "cat/pot-afrykanka/c03.jpg",
@@ -2955,8 +2937,8 @@ window.NANA = {
     "gallery": [
       "cat/pot-spliachyi/photo1.jpg",
       "cat/pot-spliachyi/photo2.jpg",
-      "cat/pot-spliachyi/photo3.jpg",
       "cat/pot-spliachyi/photo4.jpg",
+      "cat/pot-spliachyi/photo5.jpg",
       "cat/pot-spliachyi/c01.jpg",
       "cat/pot-spliachyi/c02.jpg",
       "cat/pot-spliachyi/c03.jpg",
@@ -3037,7 +3019,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/pot-sfera/photo1.jpg",
-      "cat/pot-sfera/photo2.jpg",
       "cat/pot-sfera/photo3.jpg",
       "cat/pot-sfera/photo4.jpg",
       "cat/pot-sfera/c01.jpg",
@@ -3059,55 +3040,55 @@ window.NANA = {
       "values": [
         {
           "name": "Білий шовк",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Бежевий шовк",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Сірий шовк",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Червоний шовк",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Бузковий шовк",
-          "img": 8
+          "img": 7
         },
         {
           "name": "Бірюза шовк",
-          "img": 9
+          "img": 8
         },
         {
           "name": "Білий глянець",
-          "img": 10
+          "img": 9
         },
         {
           "name": "Бежевий глянець",
-          "img": 11
+          "img": 10
         },
         {
           "name": "Рожевий глянець",
-          "img": 12
+          "img": 11
         },
         {
           "name": "Бузковий глянець",
-          "img": 13
+          "img": 12
         },
         {
           "name": "Червоний глянець",
-          "img": 14
+          "img": 13
         },
         {
           "name": "Синій глянець",
-          "img": 15
+          "img": 14
         },
         {
           "name": "Бірюза глянець",
-          "img": 16
+          "img": 15
         }
       ]
     }
@@ -3140,7 +3121,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/pot-kiltse/photo1.jpg",
-      "cat/pot-kiltse/photo2.jpg",
       "cat/pot-kiltse/c01.jpg",
       "cat/pot-kiltse/c02.jpg",
       "cat/pot-kiltse/c03.jpg",
@@ -3154,31 +3134,31 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 2
+          "img": 1
         },
         {
           "name": "Чорний глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Шоколад глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Сірий глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Капучино глянець",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Білий шовк",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Бежевий шовк",
-          "img": 8
+          "img": 7
         }
       ]
     }
@@ -3212,7 +3192,6 @@ window.NANA = {
     "gallery": [
       "cat/pot-bonsai/photo1.jpg",
       "cat/pot-bonsai/photo2.jpg",
-      "cat/pot-bonsai/photo3.jpg",
       "cat/pot-bonsai/c01.jpg",
       "cat/pot-bonsai/c02.jpg",
       "cat/pot-bonsai/c03.jpg",
@@ -3225,27 +3204,27 @@ window.NANA = {
       "values": [
         {
           "name": "Білий глянець",
-          "img": 3
+          "img": 2
         },
         {
           "name": "Бежевий глянець",
-          "img": 4
+          "img": 3
         },
         {
           "name": "Сірий глянець",
-          "img": 5
+          "img": 4
         },
         {
           "name": "Чорний глянець",
-          "img": 6
+          "img": 5
         },
         {
           "name": "Червоний глянець",
-          "img": 7
+          "img": 6
         },
         {
           "name": "Оливка глянець",
-          "img": 8
+          "img": 7
         }
       ]
     }
@@ -3405,8 +3384,8 @@ window.NANA = {
     "gallery": [
       "cat/pot-fialka/photo1.jpg",
       "cat/pot-fialka/photo2.jpg",
-      "cat/pot-fialka/photo3.jpg",
       "cat/pot-fialka/photo4.jpg",
+      "cat/pot-fialka/photo5.jpg",
       "cat/pot-fialka/c01.jpg",
       "cat/pot-fialka/c02.jpg",
       "cat/pot-fialka/c03.jpg",
@@ -3512,8 +3491,6 @@ window.NANA = {
     ],
     "gallery": [
       "cat/pot-kometa/photo1.jpg",
-      "cat/pot-kometa/photo2.jpg",
-      "cat/pot-kometa/photo3.jpg",
       "cat/pot-kometa/c01.jpg",
       "cat/pot-kometa/c02.jpg",
       "cat/pot-kometa/c03.jpg",
@@ -3528,35 +3505,35 @@ window.NANA = {
       "values": [
         {
           "name": "Білий шовк",
-          "img": 3
+          "img": 1
         },
         {
           "name": "Бежевий шовк",
-          "img": 4
+          "img": 2
         },
         {
           "name": "Сірий шовк",
-          "img": 5
+          "img": 3
         },
         {
           "name": "Шоколад шовк",
-          "img": 6
+          "img": 4
         },
         {
           "name": "Білий глянець",
-          "img": 7
+          "img": 5
         },
         {
           "name": "Бежевий глянець",
-          "img": 8
+          "img": 6
         },
         {
           "name": "Білий муар",
-          "img": 9
+          "img": 7
         },
         {
           "name": "Чорний муар",
-          "img": 10
+          "img": 8
         }
       ]
     }

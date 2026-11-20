@@ -8,10 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700&family=Montserrat:wght@300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/logo.css">
-<link rel="stylesheet" href="../assets/product-modal.css">
-<link rel="stylesheet" href="../assets/cart.css">
-<link rel="stylesheet" href="../assets/catalog.css">
+<link rel="stylesheet" href="../assets/logo.css?v=202611201456">
+<link rel="stylesheet" href="../assets/product-modal.css?v=202611201456">
+<link rel="stylesheet" href="../assets/cart.css?v=202611201456">
+<link rel="stylesheet" href="../assets/catalog.css?v=202611201456">
 <style>
   :root {
     --cat-accent: #1f1c1a; --cat-radius: 18px; --cat-line: #e6e1d9; --cat-head: "Lora", serif; --cat-muted: #6b655f;
@@ -246,8 +246,8 @@
   </div>
 </section>
 
-<script src="../assets/logo.js"></script>
-<script src="../assets/products.js"></script>
+<script src="../assets/logo.js?v=202611201456"></script>
+<script src="../assets/products.js?v=202611201456"></script>
 <script>
   document.querySelectorAll('[data-rail]').forEach((rail) => {
     const items = JSON.parse(rail.dataset.rail);
@@ -261,8 +261,8 @@
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>
-<script src="../assets/catalog.js"></script>
-<script src="../assets/cart.js"></script>
-<script src="../assets/product-modal.js"></script>
+<script src="../assets/catalog.js?v=202611201456"></script>
+<script src="../assets/cart.js?v=202611201456"></script>
+<script src="../assets/product-modal.js?v=202611201456"></script>
 </body>
 </html>
